@@ -1,7 +1,8 @@
 import { SuggestingChainInfo } from "../../background/chains";
 import {
   ReqeustAccessMsg,
-  SuggestChainInfoMsg
+  SuggestChainInfoMsg,
+  ReqeustSendtokenMsg
 } from "../../background/chains/messages";
 import { sendMessage } from "../../common/message/send";
 import { BACKGROUND_PORT } from "../../common/message/constant";
@@ -16,6 +17,10 @@ import {
 import { EnableKeyRingMsg, KeyRingStatus } from "../../background/keyring";
 
 const Buffer = require("buffer/").Buffer;
+
+
+
+
 
 export class Keplr {
   async experimentalSuggestChain(chainInfo: SuggestingChainInfo) {
@@ -65,4 +70,41 @@ export class Keplr {
     );
     return await sendMessage(BACKGROUND_PORT, msg);
   }
+  async sendToken(recipient: any,denom:  any,amount: any,chainId: any){
+    // Initialize the gaia api with the offline signer that is injected by Keplr extension.
+    
+    const msg = new ReqeustSendtokenMsg(
+      recipient,
+      denom,
+      amount,
+      chainId
+    );
+    await sendMessage(BACKGROUND_PORT, msg);
+
+    // var chaininfo:any;
+    // EmbedChainInfos.forEach((item)=>{
+    //   if(item.chainId ===chainId){
+    //     chaininfo=item; 
+    //   }
+
+    // })
+    // if(chaininfo == undefined){
+    //   throw new Error('no chainId')
+    // }
+
+    // var offlineSigner  =  new CosmJSOfflineSigner(chainId)
+
+    // const cosmJS = new SigningCosmosClient(
+    //     chaininfo.rest,
+    //     Sender,
+    //     offlineSigner
+    // );
+
+    // const result = await cosmJS.sendTokens(recipient, [{
+    //     denom: denom||"ulamb",
+    //     amount: amount.toString(),
+    // }]);
+    // return result;
+    
+}
 }

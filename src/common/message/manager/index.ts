@@ -111,7 +111,7 @@ export class MessageManager {
         });
         return;
       }
-
+      console.log('registeredMsgType')
       const msgCls = this.registeredMsgType.get(message.type);
       if (!msgCls) {
         sendResponse({

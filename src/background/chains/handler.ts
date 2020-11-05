@@ -13,7 +13,8 @@ import {
   RemoveSuggestedChainInfoMsg,
   ReqeustAccessMsg,
   SuggestChainInfoMsg,
-  TryUpdateChainMsg
+  TryUpdateChainMsg,
+  ReqeustSendtokenMsg
 } from "./messages";
 import { BIP44 } from "@chainapsis/cosmosjs/core/bip44";
 import { ChainInfo } from "./types";
@@ -22,6 +23,7 @@ type Writeable<T> = { -readonly [P in keyof T]: T[P] };
 
 export const getHandler: (keeper: ChainsKeeper) => Handler = keeper => {
   return (env: Env, msg: Message<unknown>) => {
+    console.log('getHandler')
     switch (msg.constructor) {
       case GetChainInfosMsg:
         return handleGetChainInfosMsg(keeper)(env, msg as GetChainInfosMsg);
@@ -73,6 +75,8 @@ export const getHandler: (keeper: ChainsKeeper) => Handler = keeper => {
         );
       case TryUpdateChainMsg:
         return handleTryUpdateChainMsg(keeper)(env, msg as TryUpdateChainMsg);
+      case ReqeustSendtokenMsg:
+        return handleRequestSendTokenMsg(keeper)(env, msg as ReqeustSendtokenMsg);
       default:
         throw new Error("Unknown msg type");
     }
@@ -168,6 +172,16 @@ const handleRequestAccessMsg: (
     await keeper.requestAccess(env.extensionBaseURL, msg.id, msg.chainId, [
       msg.appOrigin
     ]);
+  };
+};
+
+const handleRequestSendTokenMsg: (
+  keeper: ChainsKeeper
+) => InternalHandler<ReqeustSendtokenMsg> = keeper => {
+  return async (env, msg) => {
+    console.log('handleRequestSendTokenMsg')
+    await keeper.requestSendToken(env.extensionBaseURL, 
+       msg.chainId,msg.recipient, msg.amount,msg.denom);
   };
 };
 

@@ -230,6 +230,39 @@ export class ChainsKeeper {
     }
   }
 
+  async requestSendToken(
+    extensionBaseURL: string,
+    chainId: string,
+    recipient:string,
+    amount: string,
+    denom: string,
+  ): Promise<void> {
+    
+
+    // // Will throw an error if chain is unknown.
+    await this.getChainInfo(chainId);
+
+    // const accessOrigin = await this.getAccessOrigin(chainId);
+    // if (
+    //   origins.every(origin => {
+    //     return accessOrigin.origins.includes(origin);
+    //   })
+    // ) {
+    //   return;
+    // }
+
+    this.windowOpener(`${extensionBaseURL}popup.html#/send?chainId=${chainId}&recipient=${recipient}&amount=${amount}&denom=${denom}`);
+
+    // await this.accessRequestApprover.request(id, {
+    //   chainId,
+    //   origins
+    // });
+
+    // for (const origin of origins) {
+    //   this.addAccessOrigin(chainId, origin);
+    // }
+  }
+
   getRequestAccessData(id: string): AccessOrigin {
     const data = this.accessRequestApprover.getData(id);
     if (!data) {

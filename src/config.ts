@@ -15,20 +15,8 @@ import {
   KAVA_REST_ENDPOINT,
   KAVA_RPC_CONFIG,
   KAVA_RPC_ENDPOINT,
-  SECRET_NETWORK_REST_CONFIG,
-  SECRET_NETWORK_REST_ENDPOINT,
-  SECRET_NETWORK_RPC_CONFIG,
-  SECRET_NETWORK_RPC_ENDPOINT,
-  BETA_CYBER_NETWORK_REST_ENDPOINT,
-  BETA_CYBER_NETWORK_REST_CONFIG,
-  BETA_CYBER_NETWORK_RPC_ENDPOINT,
-  BETA_CYBER_NETWORK_RPC_CONFIG,
-  BETA_STRAIGHTEDGE_REST_ENDPOINT,
-  BETA_STRAIGHTEDGE_REST_CONFIG,
-  BETA_STRAIGHTEDGE_RPC_ENDPOINT,
-  BETA_STRAIGHTEDGE_RPC_CONFIG,
-  ADDITIONAL_SIGN_IN_PREPEND,
-  ADDITIONAL_INTL_MESSAGES
+  ADDITIONAL_INTL_MESSAGES,
+  ADDITIONAL_SIGN_IN_PREPEND
 } from "./config.var";
 import { IntlMessages } from "./ui/popup/language";
 
@@ -48,13 +36,13 @@ export const EmbedChainInfos: ChainInfo[] = [
     rpcConfig: COSMOS_RPC_CONFIG,
     rest: COSMOS_REST_ENDPOINT,
     restConfig: COSMOS_REST_CONFIG,
-    chainId: "cosmoshub-3",
-    chainName: "Cosmos",
+    chainId: "lambda-bdd",
+    chainName: "lambda",
     stakeCurrency: {
-      coinDenom: "ATOM",
-      coinMinimalDenom: "uatom",
+      coinDenom: "lamb",
+      coinMinimalDenom: "ulamb",
       coinDecimals: 6,
-      coinGeckoId: "cosmos"
+      coinGeckoId: "lamb"
     },
     walletUrl:
       process.env.NODE_ENV === "production"
@@ -64,22 +52,22 @@ export const EmbedChainInfos: ChainInfo[] = [
       process.env.NODE_ENV === "production"
         ? "https://wallet.keplr.app/#/cosmoshub-3/stake"
         : "http://localhost:8081/#/cosmoshub-3/stake",
-    bip44: new BIP44(44, 118, 0),
-    bech32Config: defaultBech32Config("cosmos"),
+    bip44: new BIP44(44, 364, 0),
+    bech32Config: defaultBech32Config("lambda"),
     currencies: [
       {
-        coinDenom: "ATOM",
-        coinMinimalDenom: "uatom",
+        coinDenom: "lamb",
+        coinMinimalDenom: "ulamb",
         coinDecimals: 6,
-        coinGeckoId: "cosmos"
+        coinGeckoId: "lamb"
       }
     ],
     feeCurrencies: [
       {
-        coinDenom: "ATOM",
-        coinMinimalDenom: "uatom",
+        coinDenom: "lamb",
+        coinMinimalDenom: "ulamb",
         coinDecimals: 6,
-        coinGeckoId: "cosmos"
+        coinGeckoId: "lamb"
       }
     ],
     coinType: 118
@@ -124,137 +112,6 @@ export const EmbedChainInfos: ChainInfo[] = [
       }
     ],
     coinType: 459
-  },
-  {
-    rpc: SECRET_NETWORK_RPC_ENDPOINT,
-    rpcConfig: SECRET_NETWORK_RPC_CONFIG,
-    rest: SECRET_NETWORK_REST_ENDPOINT,
-    restConfig: SECRET_NETWORK_REST_CONFIG,
-    chainId: "secret-2",
-    chainName: "Secret Network",
-    stakeCurrency: {
-      coinDenom: "SCRT",
-      coinMinimalDenom: "uscrt",
-      coinDecimals: 6,
-      coinGeckoId: "secret"
-    },
-    walletUrl:
-      process.env.NODE_ENV === "production"
-        ? "https://wallet.keplr.app/#/secret-1/stake"
-        : "http://localhost:8081/#/secret-1/stake",
-    walletUrlForStaking:
-      process.env.NODE_ENV === "production"
-        ? "https://wallet.keplr.app/#/secret-1/stake"
-        : "http://localhost:8081/#/secret-1/stake",
-    bip44: new BIP44(44, 118, 0),
-    bech32Config: defaultBech32Config("secret"),
-    currencies: [
-      {
-        coinDenom: "SCRT",
-        coinMinimalDenom: "uscrt",
-        coinDecimals: 6,
-        coinGeckoId: "secret"
-      }
-    ],
-    feeCurrencies: [
-      {
-        coinDenom: "SCRT",
-        coinMinimalDenom: "uscrt",
-        coinDecimals: 6,
-        coinGeckoId: "secret"
-      }
-    ],
-    coinType: 529,
-    gasPriceStep: {
-      low: 0.1,
-      average: 0.25,
-      high: 0.4
-    }
-  },
-  {
-    rpc: BETA_CYBER_NETWORK_RPC_ENDPOINT,
-    rpcConfig: BETA_CYBER_NETWORK_RPC_CONFIG,
-    rest: BETA_CYBER_NETWORK_REST_ENDPOINT,
-    restConfig: BETA_CYBER_NETWORK_REST_CONFIG,
-    chainId: "euler-6",
-    chainName: "Cyber",
-    stakeCurrency: {
-      coinDenom: "EUL",
-      coinMinimalDenom: "eul",
-      coinDecimals: 0
-    },
-    walletUrl:
-      process.env.NODE_ENV === "production"
-        ? "https://wallet.keplr.app/#/euler-6/stake"
-        : "http://localhost:8081/#/euler-6/stake",
-    walletUrlForStaking:
-      process.env.NODE_ENV === "production"
-        ? "https://wallet.keplr.app/#/euler-6/stake"
-        : "http://localhost:8081/#/euler-6/stake",
-    bip44: new BIP44(44, 118, 0),
-    bech32Config: defaultBech32Config("cyber"),
-    currencies: [
-      {
-        coinDenom: "EUL",
-        coinMinimalDenom: "eul",
-        coinDecimals: 0
-      }
-    ],
-    feeCurrencies: [
-      {
-        coinDenom: "EUL",
-        coinMinimalDenom: "eul",
-        coinDecimals: 0
-      }
-    ],
-    beta: true
-  },
-  {
-    rpc: BETA_STRAIGHTEDGE_RPC_ENDPOINT,
-    rpcConfig: BETA_STRAIGHTEDGE_RPC_CONFIG,
-    rest: BETA_STRAIGHTEDGE_REST_ENDPOINT,
-    restConfig: BETA_STRAIGHTEDGE_REST_CONFIG,
-    chainId: "straightedge-2",
-    chainName: "Straightedge",
-    stakeCurrency: {
-      coinDenom: "STR",
-      coinMinimalDenom: "astr",
-      coinDecimals: 18
-    },
-    walletUrl:
-      process.env.NODE_ENV === "production"
-        ? "https://wallet.keplr.app/#/straightedge-2/stake"
-        : "http://localhost:8081/#/straightedge-2/stake",
-    walletUrlForStaking:
-      process.env.NODE_ENV === "production"
-        ? "https://wallet.keplr.app/#/straightedge-2/stake"
-        : "http://localhost:8081/#/straightedge-2/stake",
-    bip44: new BIP44(44, 118, 0),
-    bech32Config: defaultBech32Config("str"),
-    currencies: [
-      {
-        coinDenom: "STR",
-        coinMinimalDenom: "astr",
-        coinDecimals: 18
-      }
-    ],
-    feeCurrencies: [
-      {
-        coinDenom: "STR",
-        coinMinimalDenom: "astr",
-        coinDecimals: 18
-      }
-    ],
-    coinType: 551,
-    // STR's decimal is high. Thus, if gas price is set as 0.025, it produces very low and long fee.
-    // And, currently, this long fee is not visible well in Keplr.
-    // Just, increase the gas price step temporarily.
-    gasPriceStep: {
-      low: 0.01 * Math.pow(10, 12),
-      average: 0.025 * Math.pow(10, 12),
-      high: 0.04 * Math.pow(10, 12)
-    },
-    beta: true
   }
 ];
 
@@ -263,7 +120,7 @@ export const EmbedChainInfos: ChainInfo[] = [
  */
 export const EmbedAccessOrigins: AccessOrigin[] = [
   {
-    chainId: "cosmoshub-3",
+    chainId: "lambda-bdd",
     origins:
       process.env.NODE_ENV === "production" ? ["https://wallet.keplr.app"] : []
   },

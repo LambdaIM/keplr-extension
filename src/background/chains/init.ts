@@ -12,7 +12,8 @@ import {
   RejectSuggestedChainInfoMsg,
   GetSuggestedChainInfoMsg,
   RemoveSuggestedChainInfoMsg,
-  TryUpdateChainMsg
+  TryUpdateChainMsg,
+  ReqeustSendtokenMsg
 } from "./messages";
 import { ROUTE } from "./constants";
 import { getHandler } from "./handler";
@@ -35,6 +36,8 @@ export function init(
   messageManager.registerMessage(GetAccessOriginMsg);
   messageManager.registerMessage(RemoveAccessOriginMsg);
   messageManager.registerMessage(TryUpdateChainMsg);
+  messageManager.registerMessage(ReqeustSendtokenMsg);
+  
 
   messageManager.addHandler(ROUTE, getHandler(keeper));
 }

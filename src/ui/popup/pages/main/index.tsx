@@ -9,7 +9,7 @@ import { Menu } from "./menu";
 import { AccountView } from "./account";
 import { TxButtonView } from "./tx-button";
 import { AssetView } from "./asset";
-import { StakeView } from "./stake";
+
 
 import classnames from "classnames";
 import { useHistory } from "react-router";
@@ -104,13 +104,7 @@ export const MainPage: FunctionComponent = observer(() => {
           </div>
         </CardBody>
       </Card>
-      {chainStore.chainInfo.walletUrlForStaking ? (
-        <Card className={classnames(style.card, "shadow")}>
-          <CardBody>
-            <StakeView />
-          </CardBody>
-        </Card>
-      ) : null}
+      
       {hasTokens ? (
         <Card className={classnames(style.card, "shadow")}>
           <CardBody>
