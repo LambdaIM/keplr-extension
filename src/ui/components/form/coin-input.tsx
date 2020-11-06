@@ -69,6 +69,8 @@ export const CoinInput: FunctionComponent<CoinInputProps> = observer(
     const [amount, setAmount] = useState<string>("");
     const [step, setStep] = useState<string>("");
 
+    
+
     // Set current currency.
     useEffect(() => {
       // If curreny currency is undefined, or new currencies don't have the matched current currency,
@@ -103,6 +105,7 @@ export const CoinInput: FunctionComponent<CoinInputProps> = observer(
 
     // When the amount input is changes, set the amount for the tx state.
     useEffect(() => {
+      
       if (currency && amount) {
         const int = new Dec(amount)
           .mulTruncate(DecUtils.getPrecisionDec(currency.coinDecimals))
@@ -115,8 +118,14 @@ export const CoinInput: FunctionComponent<CoinInputProps> = observer(
         if (txState.amount?.toString() !== coin.toString()) {
           txState.setAmount(coin);
         }
-      } else {
+      } else if (currency && txState.defaultAmount) {
+        setAmount(txState.defaultAmount)
+      }else{
+        
         txState.setAmount(null);
+
+        
+        
       }
     }, [amount, currency, txState]);
 

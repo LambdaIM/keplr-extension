@@ -12,6 +12,7 @@ import { RegisterPage } from "./pages/register";
 import { MainPage } from "./pages/main";
 import { LockPage } from "./pages/lock";
 import { SendPage } from "./pages/send";
+import { SendtxPage } from "./pages/send/indextx";
 import { SetKeyRingPage } from "./pages/setting/keyring";
 
 import { Banner } from "./components/banner";
@@ -181,6 +182,7 @@ ReactDOM.render(
                     <Route exact path="/access" component={AccessPage} />
                     <Route exact path="/register" component={RegisterPage} />
                     <Route exact path="/send" component={SendPage} />
+                    <Route exact path="/sendtx/:hexdata" component={SendtxPage} />
                     <Route exact path="/fee/:id" component={FeePage} />
                     <Route exact path="/setting" component={SettingPage} />
                     <Route

@@ -27,14 +27,14 @@ import { Button } from "reactstrap";
 import { useTxState, withTxStateProvider } from "../../../contexts/tx";
 import { useHistory,useRouteMatch } from "react-router";
 
-export const SendPage: FunctionComponent = withTxStateProvider(
+
+export const SendtxPage: FunctionComponent = withTxStateProvider(
   observer(() => {
     console.log('send')
     const history = useHistory();
     const matchPara = useRouteMatch<{
       hexdata: string;
     }>();
-    
     
 
     const intl = useIntl();
@@ -56,10 +56,12 @@ export const SendPage: FunctionComponent = withTxStateProvider(
     const [gasForSendMsg, setGasForSendMsg] = useState(80000);
 
     const txState = useTxState();
-
     console.log(matchPara)
-    
+    var bufdata =Buffer.from(matchPara.params.hexdata,'hex').toString();
+    var jsondata = JSON.parse(bufdata); 
 
+    console.log(jsondata)
+    
 
     useEffect(() => {
       if (txState.amount?.denom) {
@@ -102,6 +104,15 @@ export const SendPage: FunctionComponent = withTxStateProvider(
     useEffect(() => {
       txState.setGas(gasForSendMsg);
     }, [gasForSendMsg, txState]);
+
+    useEffect(() => {
+      txState.setDefaultAmount(jsondata.amount);
+
+    }, [txState,jsondata,memorizedCurrencies])
+
+    useEffect(() => {
+      txState.setRawAddress(jsondata.recipient)  
+    }, [txState,jsondata,memorizedCurrencies])
 
     // Cyber chain (eular-6) doesn't require the fees to send tx.
     // So, don't need to show the fee input.

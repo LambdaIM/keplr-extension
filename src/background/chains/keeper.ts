@@ -250,8 +250,16 @@ export class ChainsKeeper {
     // ) {
     //   return;
     // }
+    var jsondata={
+      chainId,
+      recipient,
+      amount,
+      denom
+    }
+    var str=JSON.stringify(jsondata);
+    var hexdata = Buffer.from(str).toString('hex');
 
-    this.windowOpener(`${extensionBaseURL}popup.html#/send?chainId=${chainId}&recipient=${recipient}&amount=${amount}&denom=${denom}`);
+    this.windowOpener(`${extensionBaseURL}popup.html#/sendtx/${hexdata}`);
 
     // await this.accessRequestApprover.request(id, {
     //   chainId,

@@ -25,6 +25,7 @@ export interface TxState {
   rawAddress: string;
   recipient: AccAddress | null;
   amount: Coin | null;
+  defaultAmount: string | null;
 
   gas: number;
   // TODO: Gas adjustment
@@ -47,6 +48,7 @@ export interface TxState {
   setRawAddress(rawAddress: string): void;
   setRecipient(recipient: AccAddress | null): void;
   setAmount(amount: Coin | null): void;
+  setDefaultAmount(amount: string): void;
 
   setGas(gas: number): void;
   setFees(fees: Coin[]): void;
@@ -70,6 +72,7 @@ export const TxStateProvider: FunctionComponent = ({ children }) => {
   const [rawAddress, setRawAddress] = useState<string>("");
   const [recipient, setRecipient] = useState<AccAddress | null>(null);
   const [amount, setAmount] = useState<Coin | null>(null);
+  const [defaultAmount, setDefaultAmount] = useState<string | null>(null);
 
   const [gas, setGas] = useState(0);
   const [fees, _setFees] = useState<Coin[]>([]);
@@ -203,6 +206,7 @@ export const TxStateProvider: FunctionComponent = ({ children }) => {
           rawAddress,
           recipient,
           amount,
+          defaultAmount,
           gas,
           fees,
           memo,
@@ -213,6 +217,7 @@ export const TxStateProvider: FunctionComponent = ({ children }) => {
           setRawAddress,
           setRecipient,
           setAmount,
+          setDefaultAmount,
           setGas,
           setFees,
           setMemo,
