@@ -42,3 +42,28 @@ export class GetPersistentMemoryMsg extends Message<any> {
     return GetPersistentMemoryMsg.type();
   }
 }
+
+export class GetChainIdMsg extends Message<any> {
+  public static type() {
+    return "get-ChainId-memory";
+  }
+
+  constructor() {
+    super();
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  validateBasic(): void {}
+
+  route(): string {
+    return ROUTE;
+  }
+
+  type(): string {
+    return GetChainIdMsg.type();
+  }
+
+  approveExternal(): boolean {
+    return true;
+  }
+}

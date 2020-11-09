@@ -186,17 +186,17 @@ export class BackgroundTxKeeper {
     recipient:string,
     amount: string,
     denom: string,
+    memo:string
   ): Promise<any> {
-    
-    // // Will throw an error if chain is unknown.
 
-    
     var jsondata={
       chainId,
       recipient,
       amount,
-      denom
+      denom,
+      memo
     }
+
     var str=JSON.stringify(jsondata);
     var hexdata = Buffer.from(str).toString('hex');
     var _this=this;

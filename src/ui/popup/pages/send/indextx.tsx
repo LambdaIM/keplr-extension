@@ -125,6 +125,7 @@ export const SendtxPage: FunctionComponent = withTxStateProvider(
 
     useEffect(() => {
       txState.setRawAddress(jsondata.recipient)  
+      txState.setMemo(jsondata.memo)
     }, [txState,jsondata,memorizedCurrencies])
 
     // Cyber chain (eular-6) doesn't require the fees to send tx.

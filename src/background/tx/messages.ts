@@ -106,6 +106,7 @@ export class RequestBackgroundTxWithResultMsg extends Message<
 }
 
 
+
 export class ReqeustSendtokenMsg extends Message<void> {
   public static type() {
     return "request-Sendtoken";
@@ -120,6 +121,7 @@ export class ReqeustSendtokenMsg extends Message<void> {
     public readonly recipient: string,
     public readonly denom: string,
     public readonly amount: string,
+    public readonly memo: string,
     public readonly chainId: string,
   ) {
     super();
@@ -153,3 +155,4 @@ export class ReqeustSendtokenMsg extends Message<void> {
     return true;
   }
 }
+

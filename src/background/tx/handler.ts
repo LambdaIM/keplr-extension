@@ -70,6 +70,6 @@ const handleRequestSendTokenMsg: (
   return async (env, msg) => {
     console.log('handleRequestSendTokenMsg')
    return await keeper.requestSendToken(env.extensionBaseURL, 
-       msg.chainId,msg.recipient, msg.amount,msg.denom);
+       msg.chainId,msg.recipient, msg.amount,msg.denom,msg.memo);
   };
 };

@@ -1,5 +1,5 @@
 import { Env, Handler, InternalHandler, Message } from "../../common/message";
-import { SetPersistentMemoryMsg, GetPersistentMemoryMsg } from "./messages";
+import { SetPersistentMemoryMsg, GetPersistentMemoryMsg,GetChainIdMsg } from "./messages";
 import { PersistentMemoryKeeper } from "./keeper";
 
 export const getHandler: (
@@ -14,6 +14,8 @@ export const getHandler: (
         );
       case GetPersistentMemoryMsg:
         return keeper.get();
+      case GetChainIdMsg :
+        return keeper.getChainId();
       default:
         throw new Error("Unknown msg type");
     }

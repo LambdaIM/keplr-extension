@@ -2,20 +2,22 @@ import { SuggestingChainInfo } from "../../background/chains";
 import {
   ReqeustAccessMsg,
   SuggestChainInfoMsg,
-  ReqeustSendtokenMsg,
   ReqeustGetBackgroundMsg
 } from "../../background/chains/messages";
 import { sendMessage } from "../../common/message/send";
 import { BACKGROUND_PORT } from "../../common/message/constant";
 import {
   RequestBackgroundTxMsg,
-  RequestBackgroundTxWithResultMsg
+  RequestBackgroundTxWithResultMsg,
+  ReqeustSendtokenMsg,
 } from "../../background/tx";
 import {
   ResultBroadcastTx,
   ResultBroadcastTxCommit
 } from "@chainapsis/cosmosjs/rpc/tx";
 import { EnableKeyRingMsg, KeyRingStatus } from "../../background/keyring";
+
+import { GetChainIdMsg } from "../../background/persistent-memory";
 
 const Buffer = require("buffer/").Buffer;
 
@@ -71,15 +73,17 @@ export class Keplr {
     );
     return await sendMessage(BACKGROUND_PORT, msg);
   }
-  async sendToken(recipient: any,denom:  any,amount: any,chainId: any){
+
+  async sendToken(recipient: any,denom:  any,amount: any,memo:any,chainId: any){
     // Initialize the gaia api with the offline signer that is injected by Keplr extension.
-    
     const msg = new ReqeustSendtokenMsg(
       recipient,
       denom,
       amount,
+      memo,
       chainId
     );
+
     var result = await sendMessage(BACKGROUND_PORT, msg);
     return result
   }
@@ -90,4 +94,12 @@ export class Keplr {
      
 
   }
+
+  async getChainId(): Promise<any>{
+    console.log('getChainId')
+    const msg = new GetChainIdMsg();
+    var result = await sendMessage(BACKGROUND_PORT, msg);
+    return result ;
+  }
+
 }

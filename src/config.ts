@@ -70,7 +70,7 @@ export const EmbedChainInfos: ChainInfo[] = [
         coinGeckoId: "lamb"
       }
     ],
-    coinType: 118
+    coinType: 364
   },
   {
     rpc: KAVA_RPC_ENDPOINT,

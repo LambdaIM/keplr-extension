@@ -198,54 +198,6 @@ export class ReqeustAccessMsg extends Message<void> {
   }
 }
 
-export class ReqeustSendtokenMsg extends Message<void> {
-  public static type() {
-    return "request-Sendtoken";
-  }
-/**
- *    recipient,
-      denom,
-      amount,
-      chainId
-*/
-  constructor(
-    public readonly recipient: string,
-    public readonly denom: string,
-    public readonly amount: string,
-    public readonly chainId: string,
-  ) {
-    super();
-  }
-
-  validateBasic(): void {
-    if (!this.chainId) {
-      throw new Error("chain id is empty");
-    }
-
-    if (!this.recipient) {
-      throw new Error("Empty recipient");
-    }
-    if (!this.denom) {
-      throw new Error("Empty denom");
-    }
-
-    if (!this.amount) {
-      throw new Error("Empty denom");
-    }
-  }
-  route(): string {
-    return ROUTE;
-  }
-
-  type(): string {
-    return ReqeustSendtokenMsg.type();
-  }
-
-  approveExternal(): boolean {
-    return true;
-  }
-}
-
 export class ReqeustGetBackgroundMsg extends Message<void> {
   public static type() {
     return "request-GetBackground";
