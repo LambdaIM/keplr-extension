@@ -2,7 +2,8 @@ import { SuggestingChainInfo } from "../../background/chains";
 import {
   ReqeustAccessMsg,
   SuggestChainInfoMsg,
-  ReqeustSendtokenMsg
+  ReqeustSendtokenMsg,
+  ReqeustGetBackgroundMsg
 } from "../../background/chains/messages";
 import { sendMessage } from "../../common/message/send";
 import { BACKGROUND_PORT } from "../../common/message/constant";
@@ -81,31 +82,12 @@ export class Keplr {
     );
     var result = await sendMessage(BACKGROUND_PORT, msg);
     return result
+  }
+  
+  async getAccountbalance(address:string,chainId:string){
+    const msg = new ReqeustGetBackgroundMsg(`/auth/accounts/${address}`,chainId);
+    return await sendMessage(BACKGROUND_PORT, msg)
+     
 
-    // var chaininfo:any;
-    // EmbedChainInfos.forEach((item)=>{
-    //   if(item.chainId ===chainId){
-    //     chaininfo=item; 
-    //   }
-
-    // })
-    // if(chaininfo == undefined){
-    //   throw new Error('no chainId')
-    // }
-
-    // var offlineSigner  =  new CosmJSOfflineSigner(chainId)
-
-    // const cosmJS = new SigningCosmosClient(
-    //     chaininfo.rest,
-    //     Sender,
-    //     offlineSigner
-    // );
-
-    // const result = await cosmJS.sendTokens(recipient, [{
-    //     denom: denom||"ulamb",
-    //     amount: amount.toString(),
-    // }]);
-    // return result;
-    
-}
+  }
 }

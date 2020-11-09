@@ -252,13 +252,18 @@ export class ReqeustGetBackgroundMsg extends Message<void> {
   }
 
   constructor(
-    public readonly id: string,
+    public readonly url: string,
+    public readonly chainId:string
   ) {
     super();
   }
 
   validateBasic(): void {
-    if (!this.id) {
+    if (!this.url) {
+      throw new Error("url is empty");
+    }
+
+    if (!this.chainId) {
       throw new Error("chain id is empty");
     }
 
@@ -276,7 +281,7 @@ export class ReqeustGetBackgroundMsg extends Message<void> {
   }
 }
 
-type Cb = () => void;
+
 export class ReqeustBackgroundDataMsg extends Message<void> {
   public static type() {
     return "request-GetBackgroundData";
@@ -284,10 +289,7 @@ export class ReqeustBackgroundDataMsg extends Message<void> {
 
   constructor(
     public readonly id: string,
-    public readonly data: object,
-    public readonly callBackok: Cb,
-    public readonly callBackfail: Cb,
-    
+    public readonly data: object
   ) {
     super();
   }

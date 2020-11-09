@@ -10,10 +10,10 @@ import { AsyncApprover } from "../../common/async-approver";
 import { BIP44 } from "@chainapsis/cosmosjs/core/bip44";
 import Axios from "axios";
 
-import {
-  // ReqeustGetBackgroundMsg,
-  ReqeustBackgroundDataMsg
-} from "./messages";
+// import {
+//   // ReqeustGetBackgroundMsg,
+//   ReqeustBackgroundDataMsg
+// } from "./messages";
 
 type Writeable<T> = { -readonly [P in keyof T]: T[P] };
 
@@ -235,53 +235,61 @@ export class ChainsKeeper {
     }
   }
 
-  async requestSendToken(
-    extensionBaseURL: string,
-    chainId: string,
-    recipient:string,
-    amount: string,
-    denom: string,
-  ): Promise<any> {
+  // async requestSendToken(
+  //   extensionBaseURL: string,
+  //   chainId: string,
+  //   recipient:string,
+  //   amount: string,
+  //   denom: string,
+  // ): Promise<any> {
     
-    // // Will throw an error if chain is unknown.
+  //   // // Will throw an error if chain is unknown.
 
-    await this.getChainInfo(chainId);
-    var jsondata={
-      chainId,
-      recipient,
-      amount,
-      denom
-    }
-    var str=JSON.stringify(jsondata);
-    var hexdata = Buffer.from(str).toString('hex');
-    var _this=this;
+  //   await this.getChainInfo(chainId);
+  //   var jsondata={
+  //     chainId,
+  //     recipient,
+  //     amount,
+  //     denom
+  //   }
+  //   var str=JSON.stringify(jsondata);
+  //   var hexdata = Buffer.from(str).toString('hex');
+  //   var _this=this;
     
-    return  new Promise( async function(resolve, reject) {
-      var testdata = new ReqeustBackgroundDataMsg('1',jsondata,resolve,reject) ;
+  //   return  new Promise( async function(resolve, reject) {
+  //     var testdata = new ReqeustBackgroundDataMsg('1',jsondata,resolve,reject) ;
 
-      console.log('testdata')
-      console.log(ReqeustBackgroundDataMsg)
+  //     console.log('testdata')
+  //     console.log(ReqeustBackgroundDataMsg)
       
-      await _this.kvStore.set<ReqeustBackgroundDataMsg>(
-        'keyinfo',
-        testdata
-      );
-      _this.windowOpener(`${extensionBaseURL}popup.html#/sendtx/${hexdata}`);
-      //需要吧这个resolve 发送给pop 页面
-      //resolve
-      resolve({
-        data:'返回的内容'
-      })
+  //     await _this.kvStore.set<ReqeustBackgroundDataMsg>(
+  //       'keyinfo',
+  //       testdata
+  //     );
+  //     _this.windowOpener(`${extensionBaseURL}popup.html#/sendtx/${hexdata}`);
+  //     //需要吧这个resolve 发送给pop 页面
+  //     //resolve
+  //     resolve({
+  //       data:'返回的内容'
+  //     })
       
-  });
+  // });
 
 
-  }
+  // }
   
-  async requestGetBackground(id: string):Promise<any>{
+  async requestGetBackground(url: string,chainId: string):Promise<any>{
+    //1 链的基础地址
+    //2 拼接地址
+    //3 包装数据
 
-    const data =await this.kvStore.get<ReqeustBackgroundDataMsg>(id);
-    
+    const chainInfo = await this.getChainInfo(chainId);
+
+    const instance = Axios.create({
+      baseURL: chainInfo.rest
+    });
+    var data = await instance.get(url)
+
     return data
 
   }

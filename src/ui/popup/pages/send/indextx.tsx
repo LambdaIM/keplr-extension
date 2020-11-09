@@ -27,12 +27,12 @@ import { Button } from "reactstrap";
 import { useTxState, withTxStateProvider } from "../../../contexts/tx";
 import { useHistory,useRouteMatch } from "react-router";
 
-import { sendMessage } from "../../../../common/message";
-import { BACKGROUND_PORT } from "../../../../common/message/constant";
+// import { sendMessage } from "../../../../common/message";
+// import { BACKGROUND_PORT } from "../../../../common/message/constant";
 
-import {
-  ReqeustGetBackgroundMsg
-} from "../../../../background/chains/messages";
+// import {
+//   ReqeustGetBackgroundMsg
+// } from "../../../../background/chains/messages";
 
 
 export const SendtxPage: FunctionComponent = withTxStateProvider(
@@ -68,12 +68,12 @@ export const SendtxPage: FunctionComponent = withTxStateProvider(
     var jsondata = JSON.parse(bufdata); 
 
     console.log(jsondata)
-    const msg = new ReqeustGetBackgroundMsg('keyinfo');
-     sendMessage(BACKGROUND_PORT, msg)
-     .then((data)=>{
-       console.log(data)
+    // const msg = new ReqeustGetBackgroundMsg('keyinfo');
+    //  sendMessage(BACKGROUND_PORT, msg)
+    //  .then((data)=>{
+    //    console.log(data)
 
-     });
+    //  });
     
 
     useEffect(() => {

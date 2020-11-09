@@ -177,15 +177,6 @@ const handleRequestAccessMsg: (
   };
 };
 
-// const handleRequestSendTokenMsg: (
-//   keeper: ChainsKeeper
-// ) => InternalHandler<ReqeustSendtokenMsg> = keeper => {
-//   return async (env, msg) => {
-//     console.log('handleRequestSendTokenMsg')
-//    return await keeper.requestSendToken(env.extensionBaseURL, 
-//        msg.chainId,msg.recipient, msg.amount,msg.denom);
-//   };
-// };
 
 
 const handleRequestGetBackgroundMsg: (
@@ -194,7 +185,7 @@ const handleRequestGetBackgroundMsg: (
   return async (env, msg) => {
     console.log(env)
     console.log('handleRequestGetBackgroundMsg')
-   return await keeper.requestGetBackground(msg.id);
+   return await keeper.requestGetBackground(msg.url,msg.chainId);
   };
 };
 
