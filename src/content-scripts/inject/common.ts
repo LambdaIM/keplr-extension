@@ -79,7 +79,8 @@ export class Keplr {
       amount,
       chainId
     );
-    await sendMessage(BACKGROUND_PORT, msg);
+    var result = await sendMessage(BACKGROUND_PORT, msg);
+    return result
 
     // var chaininfo:any;
     // EmbedChainInfos.forEach((item)=>{

@@ -36,7 +36,7 @@ const keyRingKeeper = new KeyRing.KeyRingKeeper(
 );
 KeyRing.init(messageManager, keyRingKeeper);
 
-const backgroundTxKeeper = new BackgroundTx.BackgroundTxKeeper(chainsKeeper);
+const backgroundTxKeeper = new BackgroundTx.BackgroundTxKeeper(chainsKeeper,openWindow);
 BackgroundTx.init(messageManager, backgroundTxKeeper);
 
 messageManager.listen(BACKGROUND_PORT);

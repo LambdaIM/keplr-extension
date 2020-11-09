@@ -10,6 +10,11 @@ import { AsyncApprover } from "../../common/async-approver";
 import { BIP44 } from "@chainapsis/cosmosjs/core/bip44";
 import Axios from "axios";
 
+import {
+  // ReqeustGetBackgroundMsg,
+  ReqeustBackgroundDataMsg
+} from "./messages";
+
 type Writeable<T> = { -readonly [P in keyof T]: T[P] };
 
 export class ChainsKeeper {
@@ -236,20 +241,11 @@ export class ChainsKeeper {
     recipient:string,
     amount: string,
     denom: string,
-  ): Promise<void> {
+  ): Promise<any> {
     
-
     // // Will throw an error if chain is unknown.
-    await this.getChainInfo(chainId);
 
-    // const accessOrigin = await this.getAccessOrigin(chainId);
-    // if (
-    //   origins.every(origin => {
-    //     return accessOrigin.origins.includes(origin);
-    //   })
-    // ) {
-    //   return;
-    // }
+    await this.getChainInfo(chainId);
     var jsondata={
       chainId,
       recipient,
@@ -258,17 +254,36 @@ export class ChainsKeeper {
     }
     var str=JSON.stringify(jsondata);
     var hexdata = Buffer.from(str).toString('hex');
+    var _this=this;
+    
+    return  new Promise( async function(resolve, reject) {
+      var testdata = new ReqeustBackgroundDataMsg('1',jsondata,resolve,reject) ;
 
-    this.windowOpener(`${extensionBaseURL}popup.html#/sendtx/${hexdata}`);
+      console.log('testdata')
+      console.log(ReqeustBackgroundDataMsg)
+      
+      await _this.kvStore.set<ReqeustBackgroundDataMsg>(
+        'keyinfo',
+        testdata
+      );
+      _this.windowOpener(`${extensionBaseURL}popup.html#/sendtx/${hexdata}`);
+      //需要吧这个resolve 发送给pop 页面
+      //resolve
+      resolve({
+        data:'返回的内容'
+      })
+      
+  });
 
-    // await this.accessRequestApprover.request(id, {
-    //   chainId,
-    //   origins
-    // });
 
-    // for (const origin of origins) {
-    //   this.addAccessOrigin(chainId, origin);
-    // }
+  }
+  
+  async requestGetBackground(id: string):Promise<any>{
+
+    const data =await this.kvStore.get<ReqeustBackgroundDataMsg>(id);
+    
+    return data
+
   }
 
   getRequestAccessData(id: string): AccessOrigin {

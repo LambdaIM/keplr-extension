@@ -1,7 +1,8 @@
 import { Env, Handler, InternalHandler, Message } from "../../common/message";
 import {
   RequestBackgroundTxMsg,
-  RequestBackgroundTxWithResultMsg
+  RequestBackgroundTxWithResultMsg,
+  ReqeustSendtokenMsg
 } from "./messages";
 import { BackgroundTxKeeper } from "./keeper";
 
@@ -20,6 +21,8 @@ export const getHandler: (keeper: BackgroundTxKeeper) => Handler = (
           env,
           msg as RequestBackgroundTxWithResultMsg
         );
+      case ReqeustSendtokenMsg:
+          return handleRequestSendTokenMsg(keeper)(env, msg as ReqeustSendtokenMsg);
       default:
         throw new Error("Unknown msg type");
     }
@@ -57,5 +60,16 @@ const handleRequestBackgroundTxWithResultMsg: (
       msg.mode!,
       msg.isRestAPI
     );
+  };
+};
+
+
+const handleRequestSendTokenMsg: (
+  keeper: BackgroundTxKeeper
+) => InternalHandler<ReqeustSendtokenMsg> = keeper => {
+  return async (env, msg) => {
+    console.log('handleRequestSendTokenMsg')
+   return await keeper.requestSendToken(env.extensionBaseURL, 
+       msg.chainId,msg.recipient, msg.amount,msg.denom);
   };
 };

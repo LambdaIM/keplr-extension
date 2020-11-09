@@ -26,8 +26,13 @@ interface ABCIMessageLog {
   // Events StringEvents
 }
 
+var resolveFN:any;
+var rejectFN:any;
+var windowID:any;
 export class BackgroundTxKeeper {
-  constructor(private chainsKeeper: ChainsKeeper) {}
+  constructor(private chainsKeeper: ChainsKeeper,
+    private readonly windowOpener: (url: string) => void
+    ) {}
 
   async requestTx(
     chainId: string,
@@ -132,13 +137,25 @@ export class BackgroundTxKeeper {
         });
 
         if (restResult.status !== 200 && restResult.status !== 202) {
+          if(rejectFN){
+            rejectFN(restResult.statusText);
+          }
           throw new Error(restResult.statusText);
         }
 
         result = restResult.data;
+        console.log('返回结果')
+        console.log(restResult)
+        if(resolveFN){
+          resolveFN(result)
+        }
+        
       }
 
       BackgroundTxKeeper.processTxResultNotification(result);
+      if(resolveFN){
+        resolveFN(result)
+      }
 
       try {
         // Notify the tx is committed.
@@ -148,11 +165,67 @@ export class BackgroundTxKeeper {
       }
     } catch (e) {
       BackgroundTxKeeper.processTxErrorNotification(e);
+      rejectFN(e);
 
       throw e;
     }
 
+    try {
+      this.closeWindow();
+    } catch (error) {
+      
+    }
+
     return result;
+  }
+
+
+  async requestSendToken(
+    extensionBaseURL: string,
+    chainId: string,
+    recipient:string,
+    amount: string,
+    denom: string,
+  ): Promise<any> {
+    
+    // // Will throw an error if chain is unknown.
+
+    
+    var jsondata={
+      chainId,
+      recipient,
+      amount,
+      denom
+    }
+    var str=JSON.stringify(jsondata);
+    var hexdata = Buffer.from(str).toString('hex');
+    var _this=this;
+    
+    return  new Promise( async function(resolve, reject) {
+      
+      // browser.extension.
+      // browser.windows.create()
+      windowID = await _this.windowOpener(`${extensionBaseURL}popup.html#/sendtx/${hexdata}`);
+      //需要吧这个resolve 发送给pop 页面
+      //resolve
+      resolveFN = resolve;
+      rejectFN = reject;
+
+      
+      
+      
+  });
+
+
+  }
+
+  static closeWindow() {
+    (async () => {
+      if (windowID) {
+        await browser.windows.remove(windowID);
+      }
+    })();
+
   }
 
   private static processTxResultNotification(
@@ -229,7 +302,7 @@ export class BackgroundTxKeeper {
     } catch {
       // noop
     }
-
+    
     browser.notifications.create({
       type: "basic",
       iconUrl: browser.runtime.getURL("assets/temp-icon.svg"),

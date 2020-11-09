@@ -13,7 +13,9 @@ import {
   GetSuggestedChainInfoMsg,
   RemoveSuggestedChainInfoMsg,
   TryUpdateChainMsg,
-  ReqeustSendtokenMsg
+  // ReqeustSendtokenMsg,
+  ReqeustGetBackgroundMsg,
+  ReqeustBackgroundDataMsg
 } from "./messages";
 import { ROUTE } from "./constants";
 import { getHandler } from "./handler";
@@ -36,7 +38,13 @@ export function init(
   messageManager.registerMessage(GetAccessOriginMsg);
   messageManager.registerMessage(RemoveAccessOriginMsg);
   messageManager.registerMessage(TryUpdateChainMsg);
-  messageManager.registerMessage(ReqeustSendtokenMsg);
+  // messageManager.registerMessage(ReqeustSendtokenMsg);
+
+  messageManager.registerMessage(ReqeustGetBackgroundMsg);
+  messageManager.registerMessage(ReqeustBackgroundDataMsg);
+  
+
+  
   
 
   messageManager.addHandler(ROUTE, getHandler(keeper));

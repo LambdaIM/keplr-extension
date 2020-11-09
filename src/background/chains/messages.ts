@@ -246,6 +246,77 @@ export class ReqeustSendtokenMsg extends Message<void> {
   }
 }
 
+export class ReqeustGetBackgroundMsg extends Message<void> {
+  public static type() {
+    return "request-GetBackground";
+  }
+
+  constructor(
+    public readonly id: string,
+  ) {
+    super();
+  }
+
+  validateBasic(): void {
+    if (!this.id) {
+      throw new Error("chain id is empty");
+    }
+
+  }
+  route(): string {
+    return ROUTE;
+  }
+
+  type(): string {
+    return ReqeustGetBackgroundMsg.type();
+  }
+
+  approveExternal(): boolean {
+    return true;
+  }
+}
+
+type Cb = () => void;
+export class ReqeustBackgroundDataMsg extends Message<void> {
+  public static type() {
+    return "request-GetBackgroundData";
+  }
+
+  constructor(
+    public readonly id: string,
+    public readonly data: object,
+    public readonly callBackok: Cb,
+    public readonly callBackfail: Cb,
+    
+  ) {
+    super();
+  }
+
+  validateBasic(): void {
+    if (!this.id) {
+      throw new Error("chain id is empty");
+    }
+
+  }
+  route(): string {
+    return ROUTE;
+  }
+
+  type(): string {
+    return ReqeustBackgroundDataMsg.type();
+  }
+
+  approveExternal(): boolean {
+    return true;
+  }
+}
+
+
+
+
+
+
+
 export class GetReqeustAccessDataMsg extends Message<AccessOrigin> {
   public static type() {
     return "get-request-access-data";

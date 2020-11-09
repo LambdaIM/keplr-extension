@@ -1,7 +1,8 @@
 import { MessageManager } from "../../common/message";
 import {
   RequestBackgroundTxMsg,
-  RequestBackgroundTxWithResultMsg
+  RequestBackgroundTxWithResultMsg,
+  ReqeustSendtokenMsg
 } from "./messages";
 import { ROUTE } from "./constants";
 import { getHandler } from "./handler";
@@ -13,6 +14,7 @@ export function init(
 ): void {
   messageManager.registerMessage(RequestBackgroundTxMsg);
   messageManager.registerMessage(RequestBackgroundTxWithResultMsg);
-
+  
+  messageManager.registerMessage(ReqeustSendtokenMsg);
   messageManager.addHandler(ROUTE, getHandler(keeper));
 }
