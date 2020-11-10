@@ -33,10 +33,11 @@ export interface CoinInputProps {
   };
 
   disableAllBalance?: boolean;
+  disableAll?: boolean;
 }
 
 export const CoinInput: FunctionComponent<CoinInputProps> = observer(
-  ({ balanceText, className, label, errorTexts, disableAllBalance }) => {
+  ({ balanceText, className, label, errorTexts, disableAllBalance,disableAll }) => {
     const { chainStore } = useStore();
 
     const location = useLocation();
@@ -244,6 +245,7 @@ export const CoinInput: FunctionComponent<CoinInputProps> = observer(
           })}
         >
           <Input
+          
             className={classnames(
               "form-control-alternative",
               styleCoinInput.input
@@ -266,7 +268,7 @@ export const CoinInput: FunctionComponent<CoinInputProps> = observer(
             }, [])}
             step={step}
             min={0}
-            disabled={allBalance}
+            disabled={disableAll||allBalance}
             autoComplete="off"
           />
           <Input
@@ -283,7 +285,7 @@ export const CoinInput: FunctionComponent<CoinInputProps> = observer(
               setCurrency(currency);
               e.preventDefault();
             }}
-            disabled={allBalance || !currency}
+            disabled={disableAll||allBalance || !currency}
           >
             {txState.currencies.map((currency, i) => {
               return (

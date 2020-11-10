@@ -55,6 +55,7 @@ export interface AddressInputProps {
   coinType?: number;
 
   disableAddressBook?: boolean;
+  disableAddress?: boolean;
 }
 
 export const AddressInput: FunctionComponent<AddressInputProps> = ({
@@ -63,7 +64,8 @@ export const AddressInput: FunctionComponent<AddressInputProps> = ({
   label,
   errorTexts,
   coinType,
-  disableAddressBook
+  disableAddressBook,
+  disableAddress
 }) => {
   const txState = useTxState();
 
@@ -264,6 +266,7 @@ export const AddressInput: FunctionComponent<AddressInputProps> = ({
               [txState]
             )}
             autoComplete="off"
+            disabled={!!disableAddress}
           />
           {!disableAddressBook ? (
             <Button

@@ -191,6 +191,8 @@ export const SendtxPage: FunctionComponent = withTxStateProvider(
             <div>
               <AddressInput
                 label={intl.formatMessage({ id: "send.input.recipient" })}
+                disableAddressBook={true}
+                disableAddress={true}
                 bech32Prefix={
                   chainStore.chainInfo.bech32Config.bech32PrefixAccAddr
                 }
@@ -212,9 +214,12 @@ export const SendtxPage: FunctionComponent = withTxStateProvider(
                     id: "sned.input.recipient.error.ens-unknown-error"
                   })
                 }}
+                
               />
               <CoinInput
                 label={intl.formatMessage({ id: "send.input.amount" })}
+                disableAllBalance = {true}
+                disableAll = {true}
                 balanceText={intl.formatMessage({
                   id: "send.input-button.balance"
                 })}
@@ -226,6 +231,7 @@ export const SendtxPage: FunctionComponent = withTxStateProvider(
               />
               <MemoInput
                 label={intl.formatMessage({ id: "send.input.memo" })}
+                disableAll={true}
               />
               {isCyberNetwork ? null : (
                 <FeeButtons

@@ -90,9 +90,9 @@ export const TxButtonView: FunctionComponent = observer(() => {
 
   const [isDepositOpen, setIsDepositOpen] = useState(false);
 
-  const toggleDepositModal = useCallback(() => {
-    setIsDepositOpen(!isDepositOpen);
-  }, [isDepositOpen]);
+  // const toggleDepositModal = useCallback(() => {
+  //   setIsDepositOpen(!isDepositOpen);
+  // }, [isDepositOpen]);
 
   const [tooltipOpen, setTooltipOpen] = useState(false);
   const toogleTooltip = useCallback(() => {
@@ -123,14 +123,14 @@ export const TxButtonView: FunctionComponent = observer(() => {
       >
         <DepositModal bech32Address={accountStore.bech32Address} />
       </Modal>
-      <Button
+      {/* <Button
         className={styleTxButton.button}
         color="primary"
         outline
         onClick={toggleDepositModal}
       >
         <FormattedMessage id="main.account.button.deposit" />
-      </Button>
+      </Button> */}
       {/*
         "Disabled" property in button tag will block the mouse enter/leave events.
         So, tooltip will not work as expected.

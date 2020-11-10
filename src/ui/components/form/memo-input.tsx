@@ -5,12 +5,14 @@ import { FormGroup, Input, Label } from "reactstrap";
 export interface MemoInputProps {
   label?: string;
   className?: string;
+  disableAll?: boolean;
 }
 
 // TODO: Handle the max memo bytes length for each chain.
 export const MemoInput: FunctionComponent<MemoInputProps> = ({
   label,
-  className
+  className,
+  disableAll
 }) => {
   const txState = useTxState();
 
@@ -42,6 +44,7 @@ export const MemoInput: FunctionComponent<MemoInputProps> = ({
           [txState]
         )}
         autoComplete="off"
+        disabled={!!disableAll}
       />
     </FormGroup>
   );

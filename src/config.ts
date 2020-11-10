@@ -11,10 +11,10 @@ import {
   COSMOS_RPC_CONFIG,
   COSMOS_RPC_ENDPOINT,
   ETHEREUM_ENDPOINT,
-  KAVA_REST_CONFIG,
-  KAVA_REST_ENDPOINT,
-  KAVA_RPC_CONFIG,
-  KAVA_RPC_ENDPOINT,
+  COSMOS_REST_CONFIG_test,
+  COSMOS_REST_ENDPOINT_test,
+  COSMOS_RPC_CONFIG_test,
+  COSMOS_RPC_ENDPOINT_test,
   ADDITIONAL_INTL_MESSAGES,
   ADDITIONAL_SIGN_IN_PREPEND
 } from "./config.var";
@@ -37,7 +37,48 @@ export const EmbedChainInfos: ChainInfo[] = [
     rest: COSMOS_REST_ENDPOINT,
     restConfig: COSMOS_REST_CONFIG,
     chainId: "lambda-bdd",
-    chainName: "lambda",
+    chainName: "Lambda Dev Net",
+    stakeCurrency: {
+      coinDenom: "lamb",
+      coinMinimalDenom: "ulamb",
+      coinDecimals: 6,
+      coinGeckoId: ""
+    },
+    walletUrl:
+      process.env.NODE_ENV === "production"
+        ? "https://wallet.keplr.app/#/cosmoshub-3/stake"
+        : "http://localhost:8081/#/cosmoshub-3/stake",
+    walletUrlForStaking:
+      process.env.NODE_ENV === "production"
+        ? "https://wallet.keplr.app/#/cosmoshub-3/stake"
+        : "http://localhost:8081/#/cosmoshub-3/stake",
+    bip44: new BIP44(44, 364, 0),
+    bech32Config: defaultBech32Config("lambda"),
+    currencies: [
+      {
+        coinDenom: "lamb",
+        coinMinimalDenom: "ulamb",
+        coinDecimals: 6,
+        coinGeckoId: ""
+      }
+    ],
+    feeCurrencies: [
+      {
+        coinDenom: "lamb",
+        coinMinimalDenom: "ulamb",
+        coinDecimals: 6,
+        coinGeckoId: ""
+      }
+    ],
+    coinType: 364
+  },
+  {
+    rpc: COSMOS_RPC_ENDPOINT_test,
+    rpcConfig: COSMOS_RPC_CONFIG_test,
+    rest: COSMOS_REST_ENDPOINT_test,
+    restConfig: COSMOS_REST_CONFIG_test,
+    chainId: "lambda-chain-test5.3",
+    chainName: "Lambda Test Net",
     stakeCurrency: {
       coinDenom: "lamb",
       coinMinimalDenom: "ulamb",
@@ -71,47 +112,6 @@ export const EmbedChainInfos: ChainInfo[] = [
       }
     ],
     coinType: 364
-  },
-  {
-    rpc: KAVA_RPC_ENDPOINT,
-    rpcConfig: KAVA_RPC_CONFIG,
-    rest: KAVA_REST_ENDPOINT,
-    restConfig: KAVA_REST_CONFIG,
-    chainId: "kava-4",
-    chainName: "Kava",
-    stakeCurrency: {
-      coinDenom: "KAVA",
-      coinMinimalDenom: "ukava",
-      coinDecimals: 6,
-      coinGeckoId: "kava"
-    },
-    walletUrl:
-      process.env.NODE_ENV === "production"
-        ? "https://wallet.keplr.app/#/kava-3/stake"
-        : "http://localhost:8081/#/kava-3/stake",
-    walletUrlForStaking:
-      process.env.NODE_ENV === "production"
-        ? "https://wallet.keplr.app/#/kava-3/stake"
-        : "http://localhost:8081/#/kava-3/stake",
-    bip44: new BIP44(44, 118, 0),
-    bech32Config: defaultBech32Config("kava"),
-    currencies: [
-      {
-        coinDenom: "KAVA",
-        coinMinimalDenom: "ukava",
-        coinDecimals: 6,
-        coinGeckoId: "kava"
-      }
-    ],
-    feeCurrencies: [
-      {
-        coinDenom: "KAVA",
-        coinMinimalDenom: "ukava",
-        coinDecimals: 6,
-        coinGeckoId: "kava"
-      }
-    ],
-    coinType: 459
   }
 ];
 

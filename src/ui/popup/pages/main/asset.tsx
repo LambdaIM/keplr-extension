@@ -113,7 +113,7 @@ import { DecUtils } from "../../../../common/dec-utils";
 // });
 import { Int } from "@chainapsis/cosmosjs/common/int";
 import { Price } from "../../stores/price";
-import { ToolTip } from "../../../components/tooltip";
+// import { ToolTip } from "../../../components/tooltip";
 import { FormattedMessage } from "react-intl";
 
 export const AssetStakedChartView: FunctionComponent<{
@@ -197,7 +197,7 @@ export const AssetStakedChartView: FunctionComponent<{
                   )
                 )
               : hasCoinGeckoId
-              ? "?"
+              ? ""
               : `${CoinUtils.shrinkDecimals(
                   available.add(staked),
                   stakeCurrency.coinDecimals,
@@ -269,7 +269,7 @@ export const AssetView: FunctionComponent = observer(() => {
     const coinGeckoId = chainStore.chainInfo.stakeCurrency.coinGeckoId;
 
     if (coinGeckoId != null && !priceStore.hasFiat(fiatCurrency.currency)) {
-      priceStore.fetchValue([fiatCurrency.currency], [coinGeckoId]);
+      // priceStore.fetchValue([fiatCurrency.currency], [coinGeckoId]);
     }
   }, [
     chainStore.chainInfo.stakeCurrency.coinGeckoId,
@@ -302,27 +302,27 @@ export const AssetView: FunctionComponent = observer(() => {
         stakeCurrency={stakeCurrency}
         available={availableAmount}
         staked={stakedAmount}
-        loadingIndicator={
-          <React.Fragment>
-            {accountStore.isAssetFetching ? (
-              <i className="fas fa-spinner fa-spin" />
-            ) : accountStore.lastAssetFetchingError ? (
-              <ToolTip
-                tooltip={
-                  accountStore.lastAssetFetchingError.message ??
-                  accountStore.lastAssetFetchingError.toString()
-                }
-                theme="dark"
-                trigger="hover"
-                options={{
-                  placement: "top"
-                }}
-              >
-                <i className="fas fa-exclamation-triangle text-danger" />
-              </ToolTip>
-            ) : null}
-          </React.Fragment>
-        }
+        // loadingIndicator={
+        //   <React.Fragment>
+        //     {accountStore.isAssetFetching ? (
+        //       <i className="fas fa-spinner fa-spin" />
+        //     ) : accountStore.lastAssetFetchingError ? (
+        //       <ToolTip
+        //         tooltip={
+        //           accountStore.lastAssetFetchingError.message ??
+        //           accountStore.lastAssetFetchingError.toString()
+        //         }
+        //         theme="dark"
+        //         trigger="hover"
+        //         options={{
+        //           placement: "top"
+        //         }}
+        //       >
+        //         <i className="fas fa-exclamation-triangle text-danger" />
+        //       </ToolTip>
+        //     ) : null}
+        //   </React.Fragment>
+        // }
       />
     </div>
   );

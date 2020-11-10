@@ -18,6 +18,7 @@ import {
 import { EnableKeyRingMsg, KeyRingStatus } from "../../background/keyring";
 
 import { GetChainIdMsg } from "../../background/persistent-memory";
+import { EmbedChainInfos } from "../../config";
 
 const Buffer = require("buffer/").Buffer;
 
@@ -31,10 +32,11 @@ export class Keplr {
     await sendMessage(BACKGROUND_PORT, msg);
   }
 
-  async enable(chainId: string) {
+  async enable() {
     const random = new Uint8Array(4);
     crypto.getRandomValues(random);
     const id = Buffer.from(random).toString("hex");
+    var  chainId = await this.getChainId() ;
 
     await sendMessage(
       BACKGROUND_PORT,
@@ -74,8 +76,10 @@ export class Keplr {
     return await sendMessage(BACKGROUND_PORT, msg);
   }
 
-  async sendToken(recipient: any,denom:  any,amount: any,memo:any,chainId: any){
+  async sendToken(recipient: any,denom:  any,amount: any,memo:any){
     // Initialize the gaia api with the offline signer that is injected by Keplr extension.
+    var  chainId = await this.getChainId() ;
+
     const msg = new ReqeustSendtokenMsg(
       recipient,
       denom,
@@ -88,7 +92,8 @@ export class Keplr {
     return result
   }
   
-  async getAccountbalance(address:string,chainId:string){
+  async getAccountbalance(address:string){
+    var  chainId = await this.getChainId() ;
     const msg = new ReqeustGetBackgroundMsg(`/auth/accounts/${address}`,chainId);
     return await sendMessage(BACKGROUND_PORT, msg)
      
@@ -99,6 +104,9 @@ export class Keplr {
     console.log('getChainId')
     const msg = new GetChainIdMsg();
     var result = await sendMessage(BACKGROUND_PORT, msg);
+    if(result==null&&EmbedChainInfos[0]!=undefined){
+      result = EmbedChainInfos[0].chainId
+    }
     return result ;
   }
 
