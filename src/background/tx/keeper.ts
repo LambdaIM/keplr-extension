@@ -26,9 +26,24 @@ interface ABCIMessageLog {
   // Events StringEvents
 }
 
-var resolveFN:any;
-var rejectFN:any;
+
 var windowID:any;
+
+type tplotOptions = {
+  [key: string]: {
+    resolveFN:(value?: unknown)=>void,
+    rejectFN:(reason?: any)=>void
+  }
+}
+
+var promiseObjMap:tplotOptions={}
+
+
+// promiseObjMap[uniqueNumber]={
+//   resolveFN : resolve ,
+//   rejectFN : reject
+// }
+
 export class BackgroundTxKeeper {
   constructor(private chainsKeeper: ChainsKeeper,
     private readonly windowOpener: (url: string) => void
@@ -38,7 +53,8 @@ export class BackgroundTxKeeper {
     chainId: string,
     txBytes: string,
     mode: "sync" | "async" | "commit",
-    isRestAPI: boolean
+    isRestAPI: boolean,
+    uniqueNumber?:''
   ) {
     const info = await this.chainsKeeper.getChainInfo(chainId);
     const rpcInstance = Axios.create({
@@ -61,7 +77,8 @@ export class BackgroundTxKeeper {
       restInstance,
       txBytes,
       mode,
-      isRestAPI
+      isRestAPI,
+      uniqueNumber
     );
 
     return;
@@ -71,7 +88,8 @@ export class BackgroundTxKeeper {
     chainId: string,
     txBytes: string,
     mode: "sync" | "async" | "commit",
-    isRestAPI: boolean
+    isRestAPI: boolean,
+    uniqueNumber?:''
   ): Promise<ResultBroadcastTx | ResultBroadcastTxCommit> {
     const info = await this.chainsKeeper.getChainInfo(chainId);
     const rpcInstance = Axios.create({
@@ -93,7 +111,8 @@ export class BackgroundTxKeeper {
       restInstance,
       txBytes,
       mode,
-      isRestAPI
+      isRestAPI,
+      uniqueNumber
     );
   }
 
@@ -103,7 +122,8 @@ export class BackgroundTxKeeper {
     restInstance: AxiosInstance,
     txBytes: string,
     mode: "sync" | "async" | "commit",
-    isRestAPI: boolean
+    isRestAPI: boolean,
+    uniqueNumber?:''
   ): Promise<ResultBroadcastTx | ResultBroadcastTxCommit> {
     const rpc = new TendermintRPC(
       new Context({
@@ -137,8 +157,8 @@ export class BackgroundTxKeeper {
         });
 
         if (restResult.status !== 200 && restResult.status !== 202) {
-          if(rejectFN){
-            rejectFN(restResult.statusText);
+          if(uniqueNumber&&promiseObjMap[uniqueNumber]){
+            promiseObjMap[uniqueNumber].rejectFN(restResult.statusText);
           }
           throw new Error(restResult.statusText);
         }
@@ -146,15 +166,15 @@ export class BackgroundTxKeeper {
         result = restResult.data;
         console.log('返回结果')
         console.log(restResult)
-        if(resolveFN){
-          resolveFN(result)
+        if(uniqueNumber&&promiseObjMap[uniqueNumber]){
+          promiseObjMap[uniqueNumber].resolveFN(result)
         }
         
       }
 
       BackgroundTxKeeper.processTxResultNotification(result);
-      if(resolveFN){
-        resolveFN(result)
+      if(uniqueNumber&&promiseObjMap[uniqueNumber]){
+        promiseObjMap[uniqueNumber].resolveFN(result)
       }
 
       try {
@@ -165,7 +185,10 @@ export class BackgroundTxKeeper {
       }
     } catch (e) {
       BackgroundTxKeeper.processTxErrorNotification(e);
-      rejectFN(e);
+      if(uniqueNumber&&promiseObjMap[uniqueNumber]){
+        promiseObjMap[uniqueNumber].rejectFN(e);
+      }
+      
 
       throw e;
     }
@@ -189,27 +212,35 @@ export class BackgroundTxKeeper {
     memo:string
   ): Promise<any> {
 
+    const random = new Uint8Array(4);
+    crypto.getRandomValues(random);
+    const uniqueNumber = Buffer.from(random).toString("hex");
+
     var jsondata={
       chainId,
       recipient,
       amount,
       denom,
-      memo
+      memo,
+      uniqueNumber
     }
 
     var str=JSON.stringify(jsondata);
     var hexdata = Buffer.from(str).toString('hex');
     var _this=this;
-    
-    return  new Promise( async function(resolve, reject) {
-      
+
+    return  new Promise( async function(resolve, reject) {      
       // browser.extension.
       // browser.windows.create()
       windowID = await _this.windowOpener(`${extensionBaseURL}popup.html#/sendtx/${hexdata}`);
       //需要吧这个resolve 发送给pop 页面
       //resolve
-      resolveFN = resolve;
-      rejectFN = reject;
+      
+
+      promiseObjMap[uniqueNumber]={
+        resolveFN : resolve ,
+        rejectFN : reject
+      }
 
       
       

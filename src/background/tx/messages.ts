@@ -19,7 +19,8 @@ export class RequestBackgroundTxMsg extends Message<{}> {
     public readonly chainId: string,
     public readonly txBytes: string,
     public readonly mode: "sync" | "async" | "commit",
-    public readonly isRestAPI: boolean = false
+    public readonly isRestAPI: boolean = false,
+    public readonly uniqueNumber?: ''
   ) {
     super();
   }

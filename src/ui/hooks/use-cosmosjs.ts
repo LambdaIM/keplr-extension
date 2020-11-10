@@ -32,7 +32,8 @@ export type SendMsgs = (
   config: TxBuilderConfig,
   onSuccess?: () => void,
   onFail?: (e: Error) => void,
-  mode?: "commit" | "sync" | "async"
+  mode?: "commit" | "sync" | "async",
+  uniqueNumber?:""
 ) => Promise<void>;
 
 export interface CosmosJsHook {
@@ -169,7 +170,8 @@ export const useCosmosJS = <R extends Rest = Rest>(
       config: TxBuilderConfig,
       onSuccess?: () => void,
       onFail?: (e: Error) => void,
-      mode: "commit" | "sync" | "async" = "commit"
+      mode: "commit" | "sync" | "async" = "commit",
+      uniqueNumber?:""
     ) => {
       if (isSubscribed) {
         setLoading(true);
@@ -216,7 +218,8 @@ export const useCosmosJS = <R extends Rest = Rest>(
               api.context.get("chainId"),
               Buffer.from(bz).toString("hex"),
               mode,
-              isStargate
+              isStargate,
+              uniqueNumber
             );
             await sendMessage(BACKGROUND_PORT, msg);
           }

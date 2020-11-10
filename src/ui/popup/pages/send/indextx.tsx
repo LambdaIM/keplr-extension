@@ -63,10 +63,11 @@ export const SendtxPage: FunctionComponent = withTxStateProvider(
     const [gasForSendMsg, setGasForSendMsg] = useState(80000);
 
     const txState = useTxState();
+    
     console.log(matchPara)
     var bufdata =Buffer.from(matchPara.params.hexdata,'hex').toString();
     var jsondata = JSON.parse(bufdata); 
-
+    var uniqueNumber = jsondata.uniqueNumber;
     console.log(jsondata)
     // const msg = new ReqeustGetBackgroundMsg('keyinfo');
     //  sendMessage(BACKGROUND_PORT, msg)
@@ -182,7 +183,8 @@ export const SendtxPage: FunctionComponent = withTxStateProvider(
                     }
                   });
                 },
-                "commit"
+                "commit",
+                uniqueNumber
               );
             }
           }}
