@@ -55,6 +55,37 @@ export class RequestBackgroundTxMsg extends Message<{}> {
   }
 }
 
+
+export class RequestTxpopcloseMsg extends Message<{}> {
+  public static type() {
+    return "request-Txpopclose-tx";
+  }
+
+  
+  constructor(
+    public readonly uniqueNumber: string
+  ) {
+    super();
+  }
+
+  validateBasic(): void {
+    
+  
+  }
+
+  approveExternal(): boolean {
+    return true;
+  }
+
+  route(): string {
+    return ROUTE;
+  }
+
+  type(): string {
+    return RequestTxpopcloseMsg.type();
+  }
+}
+
 export class RequestBackgroundTxWithResultMsg extends Message<
   ResultBroadcastTx | ResultBroadcastTxCommit
 > {

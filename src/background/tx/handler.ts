@@ -2,7 +2,8 @@ import { Env, Handler, InternalHandler, Message } from "../../common/message";
 import {
   RequestBackgroundTxMsg,
   RequestBackgroundTxWithResultMsg,
-  ReqeustSendtokenMsg
+  ReqeustSendtokenMsg,
+  RequestTxpopcloseMsg
 } from "./messages";
 import { BackgroundTxKeeper } from "./keeper";
 
@@ -23,6 +24,8 @@ export const getHandler: (keeper: BackgroundTxKeeper) => Handler = (
         );
       case ReqeustSendtokenMsg:
           return handleRequestSendTokenMsg(keeper)(env, msg as ReqeustSendtokenMsg);
+      case RequestTxpopcloseMsg:
+          return handleRequestClosePopMsg(keeper)(env,msg as RequestTxpopcloseMsg);
       default:
         throw new Error("Unknown msg type");
     }
@@ -71,5 +74,16 @@ const handleRequestSendTokenMsg: (
     console.log('handleRequestSendTokenMsg')
    return await keeper.requestSendToken(env.extensionBaseURL, 
        msg.chainId,msg.recipient, msg.amount,msg.denom,msg.memo);
+  };
+};
+
+const handleRequestClosePopMsg: (
+  keeper: BackgroundTxKeeper
+) => InternalHandler<RequestTxpopcloseMsg> = keeper => {
+  return async (env,msg) => {
+    console.log('handleRequestSendTokenMsg')
+    console.log(env)
+    
+   return await keeper.requestPopClose(msg.uniqueNumber);
   };
 };

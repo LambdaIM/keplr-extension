@@ -27,12 +27,10 @@ import { Button } from "reactstrap";
 import { useTxState, withTxStateProvider } from "../../../contexts/tx";
 import { useHistory,useRouteMatch } from "react-router";
 
-// import { sendMessage } from "../../../../common/message";
-// import { BACKGROUND_PORT } from "../../../../common/message/constant";
+import { sendMessage } from "../../../../common/message";
+import { BACKGROUND_PORT } from "../../../../common/message/constant";
 
-// import {
-//   ReqeustGetBackgroundMsg
-// } from "../../../../background/chains/messages";
+import { RequestTxpopcloseMsg } from "../../../../background/tx";
 
 
 export const SendtxPage: FunctionComponent = withTxStateProvider(
@@ -75,6 +73,35 @@ export const SendtxPage: FunctionComponent = withTxStateProvider(
     //    console.log(data)
 
     //  });
+    // window.onbeforeunload= function name() {
+    //   console.log('页面卸载')
+
+    //   const msg = new RequestTxpopcloseMsg(
+    //     uniqueNumber
+    //   );
+    //   sendMessage(BACKGROUND_PORT, msg);
+      
+    // } 
+    useEffect(() => {
+      const beforeunload = async () => {
+        const msg = new RequestTxpopcloseMsg(
+          uniqueNumber
+        );
+        sendMessage(BACKGROUND_PORT, msg);
+      };
+  
+      addEventListener("beforeunload", beforeunload);
+      return () => {
+        removeEventListener("beforeunload", beforeunload);
+      };
+      
+    }, [uniqueNumber]);
+    
+
+
+    useEffect(() => {
+      txState.setBalances(accountStore.assets);
+    }, [accountStore.assets, txState]);
     
 
     useEffect(() => {

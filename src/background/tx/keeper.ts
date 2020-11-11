@@ -259,6 +259,15 @@ export class BackgroundTxKeeper {
 
   }
 
+  requestPopClose(uniqueNumber?:string){
+
+    if(uniqueNumber&&promiseObjMap[uniqueNumber]){
+      promiseObjMap[uniqueNumber].rejectFN({
+        info:'pop is close'
+      });
+    }
+  }
+
   private static processTxResultNotification(
     result: ResultBroadcastTx | ResultBroadcastTxCommit
   ): void {

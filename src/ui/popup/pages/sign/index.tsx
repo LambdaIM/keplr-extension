@@ -103,7 +103,7 @@ export const SignPage: FunctionComponent = observer(() => {
   useEffect(() => {
     // Force reject when closing window.
     const beforeunload = async () => {
-      if (!signing.loading && external && signing.reject) {
+      if (!signing.loading  && signing.reject) {
         await signing.reject();
       }
     };

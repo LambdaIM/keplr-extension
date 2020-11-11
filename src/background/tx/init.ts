@@ -2,7 +2,8 @@ import { MessageManager } from "../../common/message";
 import {
   RequestBackgroundTxMsg,
   RequestBackgroundTxWithResultMsg,
-  ReqeustSendtokenMsg
+  ReqeustSendtokenMsg,
+  RequestTxpopcloseMsg
 } from "./messages";
 import { ROUTE } from "./constants";
 import { getHandler } from "./handler";
@@ -16,5 +17,7 @@ export function init(
   messageManager.registerMessage(RequestBackgroundTxWithResultMsg);
   
   messageManager.registerMessage(ReqeustSendtokenMsg);
+  messageManager.registerMessage(RequestTxpopcloseMsg);
+
   messageManager.addHandler(ROUTE, getHandler(keeper));
 }
