@@ -252,9 +252,14 @@ export class BackgroundTxKeeper {
 
   static closeWindow() {
     (async () => {
-      if (windowID) {
-        await browser.windows.remove(windowID);
+      try {
+        if (windowID) {
+          await browser.windows.remove(windowID);
+        }  
+      } catch (error) {
+        
       }
+      
     })();
 
   }
