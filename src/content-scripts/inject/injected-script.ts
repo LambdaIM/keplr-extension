@@ -5,8 +5,8 @@ import { CosmJSOfflineSigner } from "./cosmjs-offline-signer";
 // Give a priority to production build.
 console.log('插件初始化日志')
 if (process.env.NODE_ENV !== "production") {
-  if (!window.keplr) {
-    window.keplr = new Keplr();
+  if (!window.keplrlamb) {
+    window.keplrlamb = new Keplr();
   }
 
   if (!window.cosmosJSWalletProvider) {
@@ -19,7 +19,7 @@ if (process.env.NODE_ENV !== "production") {
     };
   }
 } else {
-  window.keplr = new Keplr();
+  window.keplrlamb = new Keplr();
   window.cosmosJSWalletProvider = new CosmosJSWalletProvider();
   window.getOfflineSigner = (chainId: string): CosmJSOfflineSigner => {
     return new CosmJSOfflineSigner(chainId);

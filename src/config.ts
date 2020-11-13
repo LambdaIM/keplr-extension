@@ -15,6 +15,12 @@ import {
   COSMOS_REST_ENDPOINT_test,
   COSMOS_RPC_CONFIG_test,
   COSMOS_RPC_ENDPOINT_test,
+
+  COSMOS_REST_CONFIG_main,
+  COSMOS_REST_ENDPOINT_main,
+  COSMOS_RPC_CONFIG_main,
+  COSMOS_RPC_ENDPOINT_main,
+
   ADDITIONAL_INTL_MESSAGES,
   ADDITIONAL_SIGN_IN_PREPEND
 } from "./config.var";
@@ -68,6 +74,47 @@ export const EmbedChainInfos: ChainInfo[] = [
         coinMinimalDenom: "ulamb",
         coinDecimals: 6,
         coinGeckoId: ""
+      }
+    ],
+    coinType: 364
+  },
+  {
+    rpc: COSMOS_RPC_ENDPOINT_main,
+    rpcConfig: COSMOS_RPC_CONFIG_main,
+    rest: COSMOS_REST_ENDPOINT_main,
+    restConfig: COSMOS_REST_CONFIG_main,
+    chainId: "lambda-chain-5.1",
+    chainName: "Lambda Main Net",
+    stakeCurrency: {
+      coinDenom: "lamb",
+      coinMinimalDenom: "ulamb",
+      coinDecimals: 6,
+      coinGeckoId: "lamb"
+    },
+    walletUrl:
+      process.env.NODE_ENV === "production"
+        ? "https://wallet.keplr.app/#/cosmoshub-3/stake"
+        : "http://localhost:8081/#/cosmoshub-3/stake",
+    walletUrlForStaking:
+      process.env.NODE_ENV === "production"
+        ? "https://wallet.keplr.app/#/cosmoshub-3/stake"
+        : "http://localhost:8081/#/cosmoshub-3/stake",
+    bip44: new BIP44(44, 364, 0),
+    bech32Config: defaultBech32Config("lambda"),
+    currencies: [
+      {
+        coinDenom: "lamb",
+        coinMinimalDenom: "ulamb",
+        coinDecimals: 6,
+        coinGeckoId: "lamb"
+      }
+    ],
+    feeCurrencies: [
+      {
+        coinDenom: "lamb",
+        coinMinimalDenom: "ulamb",
+        coinDecimals: 6,
+        coinGeckoId: "lamb"
       }
     ],
     coinType: 364

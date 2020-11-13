@@ -6,6 +6,6 @@ declare global {
   interface Window {
     cosmosJSWalletProvider?: WalletProvider;
     getOfflineSigner?: (chainId: string) => CosmJSOfflineSigner;
-    keplr?: Keplr;
+    keplrlamb?: Keplr;
   }
 }
