@@ -3,7 +3,7 @@ import { Keplr } from "./common";
 import { CosmJSOfflineSigner } from "./cosmjs-offline-signer";
 
 // Give a priority to production build.
-console.log('插件初始化日志')
+
 if (process.env.NODE_ENV !== "production") {
   if (!window.keplrlamb) {
     window.keplrlamb = new Keplr();

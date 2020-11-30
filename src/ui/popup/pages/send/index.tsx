@@ -25,15 +25,15 @@ import { useIntl } from "react-intl";
 import { Button } from "reactstrap";
 
 import { useTxState, withTxStateProvider } from "../../../contexts/tx";
-import { useHistory,useRouteMatch } from "react-router";
+import { useHistory} from "react-router";
 
 export const SendPage: FunctionComponent = withTxStateProvider(
   observer(() => {
-    console.log('send')
+    
     const history = useHistory();
-    const matchPara = useRouteMatch<{
-      hexdata: string;
-    }>();
+    // const matchPara = useRouteMatch<{
+    //   hexdata: string;
+    // }>();
     
     
 
@@ -57,7 +57,7 @@ export const SendPage: FunctionComponent = withTxStateProvider(
 
     const txState = useTxState();
 
-    console.log(matchPara)
+    
     
 
 

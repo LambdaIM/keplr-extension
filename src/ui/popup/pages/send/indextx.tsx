@@ -62,11 +62,11 @@ export const SendtxPage: FunctionComponent = withTxStateProvider(
 
     const txState = useTxState();
     
-    console.log(matchPara)
+    
     var bufdata =Buffer.from(matchPara.params.hexdata,'hex').toString();
     var jsondata = JSON.parse(bufdata); 
     var uniqueNumber = jsondata.uniqueNumber;
-    console.log(jsondata)
+    
     // const msg = new ReqeustGetBackgroundMsg('keyinfo');
     //  sendMessage(BACKGROUND_PORT, msg)
     //  .then((data)=>{
