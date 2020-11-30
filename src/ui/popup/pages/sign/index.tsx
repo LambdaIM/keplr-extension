@@ -145,7 +145,8 @@ export const SignPage: FunctionComponent = observer(() => {
       window.close();
     }
   }, [signing, external]);
-
+  
+  
   return (
     <HeaderLayout
       showChainName
@@ -230,7 +231,7 @@ export const SignPage: FunctionComponent = observer(() => {
                 disabled={
                   signing.message == null ||
                   signing.message === "" ||
-                  signing.initializing
+                  signing.initializing 
                 }
                 data-loading={signing.requested}
                 onClick={onApproveClick}

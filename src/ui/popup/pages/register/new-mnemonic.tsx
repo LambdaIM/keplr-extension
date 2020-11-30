@@ -14,7 +14,7 @@ import { BackButton, NunWords } from "./index";
 import { Input, TextArea } from "../../../components/form";
 import useForm from "react-hook-form";
 import { KeyRingStore } from "../../stores/keyring";
-import { AdvancedBIP44Option } from "./advanced-bip44";
+// import { AdvancedBIP44Option } from "./advanced-bip44";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const bip39 = require("bip39");
@@ -62,7 +62,7 @@ const NewMnemonicPageIn: FunctionComponent = () => {
 
   const registerState = useRegisterState();
 
-  const [numWords, setNumWords] = useState<NunWords>(NunWords.WORDS12);
+  const [numWords, setNumWords] = useState<NunWords>(NunWords.WORDS24);
 
   const { register, handleSubmit, setValue, getValues, errors } = useForm<
     FormData
@@ -115,7 +115,7 @@ const NewMnemonicPageIn: FunctionComponent = () => {
             })}
             <div style={{ float: "right" }}>
               <ButtonGroup size="sm" style={{ marginBottom: "4px" }}>
-                <Button
+                {/* <Button
                   type="button"
                   color="primary"
                   outline={numWords !== NunWords.WORDS12}
@@ -124,7 +124,7 @@ const NewMnemonicPageIn: FunctionComponent = () => {
                   }}
                 >
                   <FormattedMessage id="register.create.toggle.word12" />
-                </Button>
+                </Button> */}
                 <Button
                   type="button"
                   color="primary"
@@ -235,7 +235,7 @@ const NewMnemonicPageIn: FunctionComponent = () => {
                 />
               </React.Fragment>
             ) : null}
-            <AdvancedBIP44Option />
+            {/* <AdvancedBIP44Option /> */}
             <Button color="primary" type="submit" block>
               <FormattedMessage id="register.create.button.next" />
             </Button>

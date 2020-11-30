@@ -15,7 +15,7 @@ import { Input, TextArea } from "../../../components/form";
 import useForm from "react-hook-form";
 import { observer } from "mobx-react";
 import { useStore } from "../../stores";
-import { AdvancedBIP44Option } from "./advanced-bip44";
+// import { AdvancedBIP44Option } from "./advanced-bip44";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const bip39 = require("bip39");
@@ -201,7 +201,7 @@ const NewMnemonicPageIn: FunctionComponent = observer(() => {
                 />
               </React.Fragment>
             ) : null}
-            <AdvancedBIP44Option />
+            {/* <AdvancedBIP44Option /> */}
             <Button
               color="primary"
               type="submit"

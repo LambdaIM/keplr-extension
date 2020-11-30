@@ -60,13 +60,16 @@ export const DetailsTab: FunctionComponent<{ message: string }> = observer(
     useEffect(() => {
       let price = new Dec(0);
       // Set true if all fees have the coingecko id.
-      let hasCoinGeckoId = true;
+      
+
+      let hasCoinGeckoId = false;
 
       for (const coin of fee) {
         const currency = chainStore.allCurrencies.find(currency => {
           return currency.coinMinimalDenom === coin.denom;
         });
         if (currency) {
+          
           if (!currency.coinGeckoId) {
             hasCoinGeckoId = false;
           }

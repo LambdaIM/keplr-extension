@@ -48,7 +48,7 @@ export const EmbedChainInfos: ChainInfo[] = [
       coinDenom: "lamb",
       coinMinimalDenom: "ulamb",
       coinDecimals: 6,
-      coinGeckoId: "lamb"
+      coinGeckoId: ""
     },
     walletUrl:
       process.env.NODE_ENV === "production"
