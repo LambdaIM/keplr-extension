@@ -55,10 +55,10 @@ import { BackgroundTxProvider } from "./background-tx-provider";
 currencyInit(LanguageToFiatCurrency);
 
 // Make sure that icon file will be included in bundle
-require("./public/assets/temp-icon.svg");
-require("./public/assets/icon/icon-16.png");
-require("./public/assets/icon/icon-48.png");
-require("./public/assets/icon/icon-128.png");
+require("./public/assets/lambd_txt.svg");
+require("./public/assets/icon/lambdalink16.png");
+require("./public/assets/icon/lambdalink48.png");
+require("./public/assets/icon/lambdalink128.png");
 
 configure({
   enforceActions: "always" // Make mobx to strict mode.
@@ -147,8 +147,8 @@ const StateRenderer: FunctionComponent = observer(() => {
     return (
       <div style={{ height: "100%" }}>
         <Banner
-          icon={require("./public/assets/temp-icon.svg")}
-          logo={require("./public/assets/logo-temp.png")}
+          icon={require("./public/assets/lambd_txt.svg")}
+          logo={require("./public/assets/lambd_txt.svg")}
           subtitle="Wallet for the Interchain"
         />
       </div>
@@ -157,8 +157,8 @@ const StateRenderer: FunctionComponent = observer(() => {
     return (
       <div style={{ height: "100%" }}>
         <Banner
-          icon={require("./public/assets/temp-icon.svg")}
-          logo={require("./public/assets/logo-temp.png")}
+          icon={require("./public/assets/lambd_txt.svg")}
+          logo={require("./public/assets/lambd_txt.svg")}
           subtitle="Wallet for the Interchain"
         />
       </div>

@@ -89,14 +89,15 @@ export const RegisterPage: FunctionComponent = withRegisterStateProvider(
       >
         <div className={style.logoContainer}>
           <img
-            className={style.icon}
-            src={require("../../public/assets/temp-icon.svg")}
+            
+            style={{display: 'none'}}
+            src={require("../../public/assets/lambdalogo.svg")}
             alt="logo"
           />
           <div className={style.logoInnerContainer}>
             <img
-              className={style.logo}
-              src={require("../../public/assets/logo-temp.png")}
+            className={style.logo}  
+              src={require("../../public/assets/lambdalogo.svg")}
               alt="logo"
             />
             <div className={style.paragraph}>Wallet for the Interchain</div>

@@ -101,7 +101,7 @@ export class Keplr {
   }
 
   async getChainId(): Promise<any>{
-    console.log('getChainId')
+    
     const msg = new GetChainIdMsg();
     var result = await sendMessage(BACKGROUND_PORT, msg);
     if(result==null&&EmbedChainInfos[0]!=undefined){

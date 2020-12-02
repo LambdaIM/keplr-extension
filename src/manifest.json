@@ -1,19 +1,19 @@
 {
   "manifest_version": 2,
 
-  "name": "Lambda Keplr",
-  "description": "Lambda  Keplr is a browser extension wallet for the Inter blockchain ecosystem.",
+  "name": "Lambda wallet",
+  "description": "Lambda  wallet is a browser extension wallet for the Inter blockchain ecosystem.",
   "version": "0.6.7",
   "applications": {
     "gecko": {
-      "id": "keplr-extension@keplr.app",
+      "id": "Lambda-wallet@keplr.app",
       "strict_min_version": "56.0"
     }
   },
   "icons": {
-    "16": "assets/icon-16.png",
-    "48": "assets/icon-48.png",
-    "128": "assets/icon-128.png"
+    "16": "assets/lambdalink16.png",
+    "48": "assets/lambdalink48.png",
+    "128": "assets/lambdalink128.png"
   },
 
   "browser_action": {
