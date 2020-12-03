@@ -89,11 +89,14 @@ const NewMnemonicPageIn: FunctionComponent = observer(() => {
             className={style.formContainer}
             onSubmit={handleSubmit(async (data: FormData) => {
               setIsLoading(true);
+              var value = data.words;
+              value = value.replace(/<\/?.+?>/g,""); 
+              value = value.replace(/[\r\n]/g, ""); 
 
               try {
                 if (registerState.mode === RegisterMode.ADD) {
                   await keyRingStore.addMnemonicKey(
-                    data.words,
+                    value,
                     {
                       name: data.name
                     },
@@ -101,7 +104,7 @@ const NewMnemonicPageIn: FunctionComponent = observer(() => {
                   );
                 } else {
                   await keyRingStore.createMnemonicKey(
-                    data.words,
+                    value,
                     data.password,
                     { name: data.name },
                     registerState.bip44HDPath
@@ -125,6 +128,9 @@ const NewMnemonicPageIn: FunctionComponent = observer(() => {
               ref={register({
                 required: "Mnemonic is required",
                 validate: (value: string): string | undefined => {
+                  value = value.replace(/<\/?.+?>/g,""); 
+                  value = value.replace(/[\r\n]/g, ""); 
+          
                   if (value.split(" ").length < 8) {
                     return intl.formatMessage({
                       id: "register.create.textarea.mnemonic.error.too-short"

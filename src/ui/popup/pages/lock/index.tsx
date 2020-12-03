@@ -79,7 +79,7 @@ export const LockPage: FunctionComponent = observer(() => {
         <Banner
           icon={require("../../public/assets/lambd_txt.svg")}
           logo={require("../../public/assets/lambd_txt.svg")}
-          subtitle="Wallet for the Interchain"
+          subtitle="wellcome to LAMB Wallet"
         />
         <Input
           type="password"

@@ -1,12 +1,12 @@
 {
   "manifest_version": 2,
 
-  "name": "Lambda wallet",
-  "description": "Lambda  wallet is a browser extension wallet for the Inter blockchain ecosystem.",
+  "name": "LAMB wallet",
+  "description": "LAMB  wallet is a browser extension wallet for the Inter blockchain ecosystem.",
   "version": "0.6.7",
   "applications": {
     "gecko": {
-      "id": "Lambda-wallet@keplr.app",
+      "id": "LAMB-wallet@keplr.app",
       "strict_min_version": "56.0"
     }
   },
@@ -18,7 +18,7 @@
 
   "browser_action": {
     "default_popup": "popup.html",
-    "default_title": "Lambda"
+    "default_title": "LAMB"
   },
   "background": {
     "scripts": ["browser-polyfill.js", "background.bundle.js"],
