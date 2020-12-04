@@ -43,7 +43,7 @@ export const EmbedChainInfos: ChainInfo[] = [
     rest: COSMOS_REST_ENDPOINT_main,
     restConfig: COSMOS_REST_CONFIG_main,
     chainId: "lambda-chain-5.1",
-    chainName: "Lambda Main Net",
+    chainName: "Main Net",
     stakeCurrency: {
       coinDenom: "lamb",
       coinMinimalDenom: "ulamb",
@@ -84,7 +84,7 @@ export const EmbedChainInfos: ChainInfo[] = [
     rest: COSMOS_REST_ENDPOINT_test,
     restConfig: COSMOS_REST_CONFIG_test,
     chainId: "lambda-chain-test5.3",
-    chainName: "Lambda Test Net",
+    chainName: "Test Net",
     stakeCurrency: {
       coinDenom: "lamb",
       coinMinimalDenom: "ulamb",
