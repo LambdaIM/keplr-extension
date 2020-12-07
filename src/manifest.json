@@ -6,7 +6,7 @@
   "version": "0.6.7",
   "applications": {
     "gecko": {
-      "id": "LAMB-wallet@keplr.app",
+      "id": "LAMB-wallet@LAMB.app",
       "strict_min_version": "56.0"
     }
   },

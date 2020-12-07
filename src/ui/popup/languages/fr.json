@@ -58,7 +58,7 @@
   "register.welcome.button.done": "Fait",
 
   "access.title": "Demande de Connexion",
-  "access.paragraph": "{host} demande à se connecter à votre compte Keplr sur <b>{chainId}</b>.",
+  "access.paragraph": "{host} demande à se connecter à votre compte lamb wallet sur <b>{chainId}</b>.",
   "access.permission.title": "Si la demande est approuvée, le site web le pourra :",
   "access.permission.account": "Connaître l'adresse de votre wallet",
   "access.permission.tx-request": "Pouvoir demander des signatures pour les transactions",

@@ -65,7 +65,7 @@
   "register.welcome.content": "Откройте расширение и совершите логин, чтобы начать путешествие.",
   "register.welcome.button.done": "Готово",
   "access.title": "Запрос на соединения",
-  "access.paragraph": "{host} запрашивает соеденение к вашей учетной записи Keplr через <b>{chainId}</b>.",
+  "access.paragraph": "{host} запрашивает соеденение к вашей учетной записи lamb wallet через <b>{chainId}</b>.",
   "access.permission.title": "Утвердив этот запрос, веб-сайт будет:",
   "access.permission.account": "Знай адрес своего кошелька",
   "access.permission.tx-request": "Уметь запрашивать подписи для подтверждения транзакций",

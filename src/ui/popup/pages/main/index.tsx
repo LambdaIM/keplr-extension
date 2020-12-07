@@ -18,6 +18,7 @@ import { useStore } from "../../stores";
 import { ChainsKeeper } from "../../../../background/chains/keeper";
 import { useConfirm } from "../../../components/confirm";
 import { useIntl } from "react-intl";
+import manifest from '../../../../manifest.json'
 // import { TokensView } from "./token";
 
 export const MainPage: FunctionComponent = observer(() => {
@@ -30,6 +31,7 @@ export const MainPage: FunctionComponent = observer(() => {
   const confirm = useConfirm();
 
   const prevChainId = useRef<string | undefined>();
+  var chainiD = chainStore.chainInfo.chainId;
   useEffect(() => {
     if (prevChainId.current !== chainStore.chainInfo.chainId) {
       // FIXME: This will be executed twice on initial because chain store set the chain info on constructor and init.
@@ -56,6 +58,7 @@ export const MainPage: FunctionComponent = observer(() => {
     }
 
     prevChainId.current = chainStore.chainInfo.chainId;
+    chainiD = prevChainId.current
   }, [chainStore, confirm, intl]);
 
   // const stakeCurrency = chainStore.chainInfo.stakeCurrency;
@@ -65,6 +68,7 @@ export const MainPage: FunctionComponent = observer(() => {
   // });
 
   // const hasTokens = tokens.length > 0;
+  
 
   return (
     <HeaderLayout
@@ -102,6 +106,9 @@ export const MainPage: FunctionComponent = observer(() => {
             <AccountView />
             <AssetView />
             <TxButtonView />
+            <div className={classnames(style.chainid)}>
+            chainID:{chainiD}  LAMB Wallet:{manifest.version}
+            </div>
           </div>
         </CardBody>
       </Card>

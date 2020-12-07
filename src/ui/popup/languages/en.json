@@ -50,7 +50,7 @@
 
   "setting.keyring": "Select Account",
   "setting.keyring.button.add": "Add Account",
-  "setting.keyring.unnamed-account": "Keplr Account",
+  "setting.keyring.unnamed-account": "lamb wallet Account",
   "setting.keyring.selected-account": "(Selected)",
 
   "setting.export": "View Mnemonic Seed",
@@ -63,7 +63,7 @@
   "setting.clear": "Delete Account",
   "setting.clear.alert": "Make sure you’ve backed up your mnemonic seed before proceeding.",
   "setting.clear.button.back-up": "Back-up account",
-  "setting.clear.warning": "By deleting your account, you will no longer have access to your account on Keplr.",
+  "setting.clear.warning": "By deleting your account, you will no longer have access to your account on lamb wallet.",
   "setting.clear.input.password": "Password",
   "setting.clear.input.password.error.required": "Password is required",
   "setting.clear.input.password.error.invalid": "Invalid password",
@@ -108,7 +108,7 @@
   "register.welcome.button.done": "Done",
 
   "chain.suggested.title": "Chain Add Request",
-  "chain.suggested.paragraph": "<b>{host}</b> would like to add blockchain <b>{chainId}</b> to Keplr.",
+  "chain.suggested.paragraph": "<b>{host}</b> would like to add blockchain <b>{chainId}</b> to lamb wallet.",
   "chain.suggested.waring.experiment.title": "Experimental Feature",
   "chain.suggested.waring.experiment.paragraph": "For the brave-hearted cosmonauts",
   "chain.suggested.button.approve": "Approve",
@@ -117,7 +117,7 @@
   "chain.remove.confirm.paragraph": "Are you sure to remove the {chainName}?",
 
   "access.title": "Requesting Connection",
-  "access.paragraph": "<b>{host}</b> is requesting to connect to your Keplr account on <b>{chainId}</b>.",
+  "access.paragraph": "<b>{host}</b> is requesting to connect to your lamb wallet account on <b>{chainId}</b>.",
   "access.permission.title": "By approving this request, the website will:",
   "access.permission.account": "Know your wallet address",
   "access.permission.tx-request": "Be able to request signatures for txs",
