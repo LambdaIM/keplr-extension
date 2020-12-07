@@ -23,7 +23,11 @@ import { EmbedChainInfos } from "../../config";
 const Buffer = require("buffer/").Buffer;
 
 
+interface Callback {
+  (name: number): number;
+}
 
+var oldChainId:number;
 
 
 export class Keplr {
@@ -108,6 +112,22 @@ export class Keplr {
       result = EmbedChainInfos[0].chainId
     }
     return result ;
+  }
+
+  listenChainId(cb:Callback){
+    var _this=this;
+    setInterval( async ()=>{
+      var chainid = await _this.getChainId();
+      if(oldChainId== undefined){
+        oldChainId = chainid
+      }else if(oldChainId!=chainid) {
+        oldChainId = chainid
+        cb(chainid)
+
+      }
+
+    },1000*5)
+
   }
 
 }
