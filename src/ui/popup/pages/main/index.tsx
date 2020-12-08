@@ -107,8 +107,8 @@ export const MainPage: FunctionComponent = observer(() => {
             <AssetView />
             <TxButtonView />
             <div className={classnames(style.chainid)}>
-             ChainID:{chainiD}<br/>
-             LAMB Wallet:{manifest.version}
+             <span>ChainID :</span> {chainiD}<br/>
+             <span>LAMB Wallet :</span>{manifest.version}
             </div>
           </div>
         </CardBody>
