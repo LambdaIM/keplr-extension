@@ -100,7 +100,7 @@ export const RegisterPage: FunctionComponent = withRegisterStateProvider(
               src={require("../../public/assets/lambd_txt.svg")}
               alt="logo"
             />
-            <div className={style.paragraph}>Wellcome to LAMB Wallet</div>
+            <div className={style.paragraph}>Welcome to LAMB Wallet</div>
           </div>
         </div>
         {registerState.status === RegisterStatus.COMPLETE ? (

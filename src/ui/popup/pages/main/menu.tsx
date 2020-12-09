@@ -50,7 +50,7 @@ export const Menu: FunctionComponent = observer(() => {
       <div className={styleMenu.footer}>
         <a
           className={styleMenu.inner}
-          href="https://github.com/everett-protocol/keplr-extension"
+          href="https://github.com/LambdaIM/keplr-extension"
           target="_blank"
           rel="noopener noreferrer"
         >

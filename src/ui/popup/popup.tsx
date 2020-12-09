@@ -149,7 +149,7 @@ const StateRenderer: FunctionComponent = observer(() => {
         <Banner
           icon={require("./public/assets/lambd_txt.svg")}
           logo={require("./public/assets/lambd_txt.svg")}
-          subtitle="Wellcome to LAMB Wallet"
+          subtitle="Welcome to LAMB Wallet"
         />
       </div>
     );
@@ -159,7 +159,7 @@ const StateRenderer: FunctionComponent = observer(() => {
         <Banner
           icon={require("./public/assets/lambd_txt.svg")}
           logo={require("./public/assets/lambd_txt.svg")}
-          subtitle="Wellcome to LAMB Wallet"
+          subtitle="Welcome to LAMB Wallet"
         />
       </div>
     );
