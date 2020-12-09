@@ -76,7 +76,7 @@ const extensionConfig = (env, args) => {
       injectedScript: ["./src/content-scripts/inject/injected-script.ts"]
     },
     output: {
-      path: path.resolve(__dirname, isEnvDevelopment ? "dist" : "prod"),
+      path: path.resolve(__dirname, isEnvDevelopment ? "dist" : "LAMB-Wallet-Chrome"),
       filename: "[name].bundle.js"
     },
     resolve: commonResolve("src/ui/popup/public/assets"),

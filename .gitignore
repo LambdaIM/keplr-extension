@@ -7,3 +7,5 @@ prod
 .gitsecret/keys/random_seed
 !*.secret
 src/config.var.tsx
+
+LAMB-Wallet-Chrome
