@@ -85,7 +85,7 @@ export const RegisterPage: FunctionComponent = withRegisterStateProvider(
     return (
       <EmptyLayout
         className={style.container}
-        style={{ height: "100%", backgroundColor: "white", padding: 0 }}
+        style={{  backgroundColor: "white", padding: 0 }}
       >
         <div className={style.logoContainer}>
           <img
