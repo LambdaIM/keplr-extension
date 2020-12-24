@@ -8,13 +8,15 @@ import { IntlProvider } from "react-intl";
 
 import MessagesEn from "./languages/en.json";
 import MessagesKo from "./languages/ko.json";
+import MessagesZh from "./languages/zh.json";
 
 export type IntlMessage = Record<string, string>;
 export type IntlMessages = { [lang: string]: Record<string, string> };
 
 const messages: IntlMessages = {
   en: MessagesEn,
-  ko: MessagesKo
+  ko: MessagesKo,
+  zh: MessagesZh
 };
 
 function getMessages(
@@ -30,6 +32,7 @@ function getMessages(
 }
 
 function initLanguage(additionalMessages: IntlMessages): string {
+  
   const language =
     localStorage.getItem("language") || navigator.language.split(/[-_]/)[0]; // language without region code
 

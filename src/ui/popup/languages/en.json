@@ -29,6 +29,7 @@
   "setting.language.automatic-with-language": "Automatic ({language})",
   "setting.language.en": "English",
   "setting.language.ko": "한국어",
+  "setting.language.zh": "简体中文",
 
   "setting.connections": "Manage Connections",
   "setting.connections.paragraph": "Manage websites connected to your wallet",

@@ -1,2 +1,2 @@
-export const BACKGROUND_PORT = "background";
-export const POPUP_PORT = "popup";
+export const BACKGROUND_PORT = "backgroundlamb";
+export const POPUP_PORT = "popuplamb";

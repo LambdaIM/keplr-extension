@@ -24,6 +24,7 @@
   "setting.language.ko": "Korean",
   "setting.language.it": "Italiano",
   "setting.language.fr": "Français",
+  "setting.language.cn": "China",
 
   "setting.connections": "Gestion des Connexions",
   "setting.connections.paragraph": "Gestion des sites web connectés à votre wallet",

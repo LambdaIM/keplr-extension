@@ -73,6 +73,22 @@ export const SettingLanguagePage: FunctionComponent = () => {
               : undefined
           }
         />
+        <PageButton
+          title={intl.formatMessage({
+            id: "setting.language.zh"
+          })}
+          onClick={useCallback(() => {
+            language.setLanguage("zh");
+            history.push({
+              pathname: "/"
+            });
+          }, [history, language])}
+          icons={
+            !language.automatic && language.language == "zh"
+              ? selectedIcon
+              : undefined
+          }
+        />
       </div>
     </HeaderLayout>
   );
