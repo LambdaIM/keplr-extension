@@ -122,6 +122,7 @@ export class AccountStore {
   }
 
   private fetchAssetsByInterval() {
+    console.log('fetchAssetsByInterval')
     if (this.lastFetchingIntervalId) {
       clearInterval(this.lastFetchingIntervalId);
       this.lastFetchingIntervalId = undefined;
@@ -160,6 +161,7 @@ export class AccountStore {
 
   @actionAsync
   public async fetchAccount() {
+    console.log('fetchAssetsByInterval')
     await task(this.fetchBech32Address());
     const cancelded = await task(this.fetchAssets());
     if (!cancelded) {
@@ -498,6 +500,7 @@ export class AccountStore {
 
   @action
   private pushAssets(assets: Coin[]) {
+    this.assets = [];
     for (const asset of assets) {
       this.pushAsset(asset);
     }

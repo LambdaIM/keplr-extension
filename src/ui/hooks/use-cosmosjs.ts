@@ -173,6 +173,9 @@ export const useCosmosJS = <R extends Rest = Rest>(
       mode: "commit" | "sync" | "async" = "commit",
       uniqueNumber?:""
     ) => {
+
+      console.log('_sendMsgs')
+
       if (isSubscribed) {
         setLoading(true);
       }
