@@ -289,7 +289,7 @@ export const AssetView: FunctionComponent = observer(() => {
     accountStore.assets,
     stakeCurrency.coinMinimalDenom
   );
-  console.log('availableAmount',availableAmount)
+  
 
   const stakedAmount = accountStore.stakedAsset
     ? accountStore.stakedAsset.amount

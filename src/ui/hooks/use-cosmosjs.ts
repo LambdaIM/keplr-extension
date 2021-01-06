@@ -174,7 +174,6 @@ export const useCosmosJS = <R extends Rest = Rest>(
       uniqueNumber?:""
     ) => {
 
-      console.log('_sendMsgs')
 
       if (isSubscribed) {
         setLoading(true);

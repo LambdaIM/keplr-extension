@@ -3,7 +3,7 @@
 
   "name": "LAMB Wallet",
   "description": "LAMB Wallet is a browser extension wallet for the Inter blockchain ecosystem.",
-  "version": "0.6.8",
+  "version": "0.6.9",
   "icons": {
     "16": "assets/lambdalink16.png",
     "48": "assets/lambdalink48.png",
