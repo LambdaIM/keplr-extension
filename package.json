@@ -4,7 +4,7 @@
   "description": "Keplr is a browser extension wallet for the Inter blockchain ecosystem.",
   "main": "index.js",
   "scripts": {
-    "build": "cross-env NODE_ENV=production webpack",
+    "build": "cross-env NODE_ENV=production webpack&&node pack.js",
     "dev": "cross-env NODE_ENV=development webpack",
     "dev:analyzer": "cross-env NODE_ENV=development ANALYZER=true webpack",
     "test": "cross-env TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' mocha --timeout 30000 -r ts-node/register 'src/**/*.spec.ts'",
@@ -33,6 +33,7 @@
     "buffer": "^5.4.3",
     "chart.js": "^2.9.3",
     "classnames": "^2.2.6",
+    "cross-zip": "3.1.0",
     "delay": "^4.4.0",
     "ethereum-ens": "^0.8.0",
     "framer-motion": "^1.6.14",
