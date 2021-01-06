@@ -498,6 +498,7 @@ export class AccountStore {
 
   @action
   private pushAssets(assets: Coin[]) {
+    this.assets = [];
     for (const asset of assets) {
       this.pushAsset(asset);
     }

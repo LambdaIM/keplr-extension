@@ -173,6 +173,8 @@ export const useCosmosJS = <R extends Rest = Rest>(
       mode: "commit" | "sync" | "async" = "commit",
       uniqueNumber?:""
     ) => {
+
+
       if (isSubscribed) {
         setLoading(true);
       }

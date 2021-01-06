@@ -30,7 +30,7 @@ export const CoinGeckoAPIEndPoint = "https://api.coingecko.com/api/v3";
 export const CoinGeckoGetPrice = "/simple/price";
 export const AutoFetchingFiatValueInterval = 300 * 1000; // 5min
 
-export const AutoFetchingAssetsInterval = 15 * 1000; // 15sec
+export const AutoFetchingAssetsInterval = 10 * 1000; // 15sec
 
 // Endpoint for Ethereum node.
 // This is used for ENS.
