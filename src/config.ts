@@ -45,7 +45,7 @@ export const EmbedChainInfos: ChainInfo[] = [
     chainId: "lambda-chain-5.1",
     chainName: "Main Net",
     stakeCurrency: {
-      coinDenom: "lamb",
+      coinDenom: "mlamb",
       coinMinimalDenom: "ulamb",
       coinDecimals: 6,
       coinGeckoId: ""
@@ -62,7 +62,7 @@ export const EmbedChainInfos: ChainInfo[] = [
     bech32Config: defaultBech32Config("lambda"),
     currencies: [
       {
-        coinDenom: "lamb",
+        coinDenom: "mlamb",
         coinMinimalDenom: "ulamb",
         coinDecimals: 6,
         coinGeckoId: ""
@@ -70,7 +70,7 @@ export const EmbedChainInfos: ChainInfo[] = [
     ],
     feeCurrencies: [
       {
-        coinDenom: "lamb",
+        coinDenom: "mlamb",
         coinMinimalDenom: "ulamb",
         coinDecimals: 6,
         coinGeckoId: ""
@@ -86,7 +86,7 @@ export const EmbedChainInfos: ChainInfo[] = [
     chainId: "lambda-chain-test5.3",
     chainName: "Test Net",
     stakeCurrency: {
-      coinDenom: "lamb",
+      coinDenom: "mlamb",
       coinMinimalDenom: "ulamb",
       coinDecimals: 6,
       coinGeckoId: ""
@@ -103,7 +103,7 @@ export const EmbedChainInfos: ChainInfo[] = [
     bech32Config: defaultBech32Config("lambda"),
     currencies: [
       {
-        coinDenom: "lamb",
+        coinDenom: "mlamb",
         coinMinimalDenom: "ulamb",
         coinDecimals: 6,
         coinGeckoId: ""
@@ -111,7 +111,7 @@ export const EmbedChainInfos: ChainInfo[] = [
     ],
     feeCurrencies: [
       {
-        coinDenom: "lamb",
+        coinDenom: "mlamb",
         coinMinimalDenom: "ulamb",
         coinDecimals: 6,
         coinGeckoId: ""
