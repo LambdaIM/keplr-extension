@@ -66,6 +66,12 @@ export const EmbedChainInfos: ChainInfo[] = [
         coinMinimalDenom: "ulamb",
         coinDecimals: 6,
         coinGeckoId: ""
+      },
+      {
+        coinDenom: "tbb",
+        coinMinimalDenom: "utbb",
+        coinDecimals: 6,
+        coinGeckoId: ""
       }
     ],
     feeCurrencies: [
@@ -105,6 +111,12 @@ export const EmbedChainInfos: ChainInfo[] = [
       {
         coinDenom: "mlamb",
         coinMinimalDenom: "ulamb",
+        coinDecimals: 6,
+        coinGeckoId: ""
+      },
+      {
+        coinDenom: "tbb",
+        coinMinimalDenom: "utbb",
         coinDecimals: 6,
         coinGeckoId: ""
       }

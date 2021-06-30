@@ -50,6 +50,7 @@ export class ChainsKeeper {
   async getChainInfos(
     applyUpdatedProperty: boolean = true
   ): Promise<ChainInfoWithEmbed[]> {
+    console.log('getChainInfos',this.embedChainInfos)
     const chainInfos = this.embedChainInfos.map(chainInfo => {
       return {
         ...chainInfo,
