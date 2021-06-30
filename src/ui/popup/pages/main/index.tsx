@@ -19,14 +19,14 @@ import { ChainsKeeper } from "../../../../background/chains/keeper";
 import { useConfirm } from "../../../components/confirm";
 import { useIntl } from "react-intl";
 import manifest from '../../../../manifest.json'
-// import { TokensView } from "./token";
+import { TokensView } from "./token";
 
 export const MainPage: FunctionComponent = observer(() => {
   const history = useHistory();
   const intl = useIntl();
-
-  // const { chainStore, accountStore } = useStore();
-  const { chainStore } = useStore();
+  console.log('****************')
+  const { chainStore, accountStore } = useStore();
+  // const { chainStore } = useStore();
 
   const confirm = useConfirm();
 
@@ -61,13 +61,15 @@ export const MainPage: FunctionComponent = observer(() => {
     chainiD = prevChainId.current
   }, [chainStore, confirm, intl]);
 
-  // const stakeCurrency = chainStore.chainInfo.stakeCurrency;
+  const stakeCurrency = chainStore.chainInfo.stakeCurrency;
 
-  // const tokens = accountStore.assets.filter(asset => {
-  //   return asset.denom !== stakeCurrency.coinMinimalDenom;
-  // });
-
-  // const hasTokens = tokens.length > 0;
+  let tokens = accountStore.assets.filter(asset => {
+    
+    return asset.denom !== stakeCurrency.coinMinimalDenom;
+  });
+  
+ 
+  const hasTokens = tokens.length > 0;
   
 
   return (
@@ -106,21 +108,26 @@ export const MainPage: FunctionComponent = observer(() => {
             <AccountView />
             <AssetView />
             <TxButtonView />
+            
             <div className={classnames(style.chainid)}>
              <span>ChainID :</span> {chainiD}<br/>
              <span>LAMB Wallet :</span>{manifest.version}
             </div>
+
           </div>
+          
         </CardBody>
+        
       </Card>
-{/*       
       {hasTokens ? (
         <Card className={classnames(style.card, "shadow")}>
           <CardBody>
             <TokensView tokens={tokens} />
           </CardBody>
         </Card>
-      ) : null} */}
+      ) : null}
+      
+      
     </HeaderLayout>
   );
 });

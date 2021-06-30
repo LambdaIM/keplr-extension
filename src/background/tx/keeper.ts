@@ -232,7 +232,7 @@ export class BackgroundTxKeeper {
     return  new Promise( async function(resolve, reject) {      
       // browser.extension.
       // browser.windows.create()
-      windowID = await _this.windowOpener(`${extensionBaseURL}popup.html#/sendtx/${hexdata}`);
+      windowID = await _this.windowOpener(`${extensionBaseURL}popup.html#/sendtx/${hexdata}?defaultdenom=${denom}`);
       //需要吧这个resolve 发送给pop 页面
       //resolve
       
